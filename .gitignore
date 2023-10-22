@@ -5,9 +5,7 @@ obj
 *.user
 
 # Server
-/Src/HM5.Server/Contracts
-/Src/HM5.Server/Logs
-/Src/HM5.Server/userprofile.json
+/Src/Cobra.Server/Data
 
 # Other
 /Res
