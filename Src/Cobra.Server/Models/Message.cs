@@ -25,8 +25,8 @@ namespace Cobra.Server.Models
         [EdmProperty("IsRead", EdmTypes.Boolean, false)]
         public bool IsRead { get; set; }
 
+        //https://youtrack.jetbrains.com/issue/RSRP-489484
         //ReSharper disable once InconsistentNaming
-        //NOTE: Due to weird bug in Rider?
         [EdmProperty("TextTemplateId", EdmTypes.Int32, false)]
         public EMessageTextTemplate TextTemplateId { get; set; }
 

@@ -15,7 +15,7 @@ namespace Cobra.Test
             [JsonPropertyName("_id")] public int Id { get; set; }
         }
 
-        // ReSharper disable UnassignedGetOnlyAutoProperty
+        //ReSharper disable UnassignedGetOnlyAutoProperty
         public class TestModelMetadata : ModelMetadata
         {
             public override IReadOnlyDictionary<object, object> AdditionalValues { get; }
@@ -66,7 +66,7 @@ namespace Cobra.Test
                 //Do nothing
             }
         }
-        // ReSharper enable UnassignedGetOnlyAutoProperty
+        //ReSharper enable UnassignedGetOnlyAutoProperty
 
         [Theory]
         [InlineData(null, null)]
@@ -102,7 +102,7 @@ namespace Cobra.Test
             Assert.Equal(expected, context.Result.Model);
         }
 
-        // ReSharper disable once InconsistentNaming
+        //ReSharper disable once InconsistentNaming
         public static IEnumerable<object[]> String_Is_NormalizedAndSplitted_Data =>
             new List<object[]>
             {
@@ -147,7 +147,7 @@ namespace Cobra.Test
             Assert.Equal(expected, context.Result.Model);
         }
 
-        // ReSharper disable once InconsistentNaming
+        //ReSharper disable once InconsistentNaming
         public static IEnumerable<object[]> String_Is_NormalizedAndJsonDeserialized_Data =>
             new List<object[]>
             {

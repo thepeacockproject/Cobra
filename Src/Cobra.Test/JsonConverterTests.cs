@@ -82,7 +82,7 @@ namespace Cobra.Test
             Assert.Equal(expected, actual);
         }
 
-        // ReSharper disable once InconsistentNaming
+        //ReSharper disable once InconsistentNaming
         public static IEnumerable<object[]> Any_IsConvertedToJsonString_Data =>
             new List<object[]>
             {

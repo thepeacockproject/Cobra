@@ -22,6 +22,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Cobra.Analyzer\Cobra.Analyzer.csproj">
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <OutputItemType>Analyzer</OutputItemType>
+    </ProjectReference>
     <ProjectReference Include="..\Cobra.Server\Cobra.Server.csproj" />
   </ItemGroup>
 

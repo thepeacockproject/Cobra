@@ -7,14 +7,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cobra.Server", "Src\Cobra.S
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{43E1351B-28D0-45FE-A10A-545CFE650039}"
 	ProjectSection(SolutionItems) = preProject
-		README.md = README.md
 		.editorconfig = .editorconfig
 		.gitignore = .gitignore
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Cobra.Hook", "Src\Cobra.Hook\Cobra.Hook.vcxproj", "{57ABB826-E2F3-4908-BBBB-634C1A747CAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cobra.Test", "Src\Cobra.Test\Cobra.Test.csproj", "{815C296D-7137-4DC6-96FF-4EC7432CEA1F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cobra.Test", "Src\Cobra.Test\Cobra.Test.csproj", "{815C296D-7137-4DC6-96FF-4EC7432CEA1F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cobra.Analyzer", "Src\Cobra.Analyzer\Cobra.Analyzer.csproj", "{EC31FDCB-1EF1-4B39-8404-5E3BAF26A3D2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,6 +64,18 @@ Global
 		{815C296D-7137-4DC6-96FF-4EC7432CEA1F}.Release|x64.Build.0 = Release|Any CPU
 		{815C296D-7137-4DC6-96FF-4EC7432CEA1F}.Release|x86.ActiveCfg = Release|Any CPU
 		{815C296D-7137-4DC6-96FF-4EC7432CEA1F}.Release|x86.Build.0 = Release|Any CPU
+		{EC31FDCB-1EF1-4B39-8404-5E3BAF26A3D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC31FDCB-1EF1-4B39-8404-5E3BAF26A3D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC31FDCB-1EF1-4B39-8404-5E3BAF26A3D2}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{EC31FDCB-1EF1-4B39-8404-5E3BAF26A3D2}.Debug|x64.Build.0 = Debug|Any CPU
+		{EC31FDCB-1EF1-4B39-8404-5E3BAF26A3D2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EC31FDCB-1EF1-4B39-8404-5E3BAF26A3D2}.Debug|x86.Build.0 = Debug|Any CPU
+		{EC31FDCB-1EF1-4B39-8404-5E3BAF26A3D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC31FDCB-1EF1-4B39-8404-5E3BAF26A3D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC31FDCB-1EF1-4B39-8404-5E3BAF26A3D2}.Release|x64.ActiveCfg = Release|Any CPU
+		{EC31FDCB-1EF1-4B39-8404-5E3BAF26A3D2}.Release|x64.Build.0 = Release|Any CPU
+		{EC31FDCB-1EF1-4B39-8404-5E3BAF26A3D2}.Release|x86.ActiveCfg = Release|Any CPU
+		{EC31FDCB-1EF1-4B39-8404-5E3BAF26A3D2}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
