@@ -1,9 +1,9 @@
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Cobra.Server.Controllers;
-using Cobra.Server.Interfaces;
-using Cobra.Server.Json;
+using Cobra.Server.Edm.Controllers;
+using Cobra.Server.Edm.Interfaces;
+using Cobra.Server.Edm.Json;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cobra.Test
@@ -29,14 +29,8 @@ namespace Cobra.Test
             public List<TestClass> JsonStringValue { get; set; }
         }
 
-        public class TestController : BaseController
+        public class TestController : BaseEdmController
         {
-            public TestController()
-                : base(null)
-            {
-                //Do nothing
-            }
-
             public IActionResult TestGenericResponse<T>(T data)
             {
                 return JsonGenericResponse(data);

@@ -1,5 +1,6 @@
 ﻿using System.Text;
-using Cobra.Server.Interfaces;
+using Cobra.Server.Shared.Interfaces;
+using Cobra.Server.Shared.Models;
 using Microsoft.AspNetCore.Http.Extensions;
 
 namespace Cobra.Server.Mvc

@@ -1,13 +1,34 @@
-using Cobra.Server.Attributes;
-using Cobra.Server.Enums;
-using Cobra.Server.Interfaces;
-using Cobra.Server.Models.Base;
-using Cobra.Server.Services;
+using Cobra.Server.Edm.Attributes;
+using Cobra.Server.Edm.Enums;
+using Cobra.Server.Edm.Interfaces;
+using Cobra.Server.Edm.Models.Base;
+using Cobra.Server.Edm.Services;
 
 namespace Cobra.Test
 {
     public class MetadataServiceTests
     {
+        public class TestMetadataService : MetadataService
+        {
+            private readonly List<Type> _edmEntityTypes;
+            private readonly List<Type> _edmFunctionImports;
+
+            public TestMetadataService(
+                string schemaNamespace,
+                List<Type> edmEntityTypes,
+                List<Type> edmFunctionImports
+            )
+            {
+                _edmEntityTypes = edmEntityTypes;
+                _edmFunctionImports = edmFunctionImports;
+
+                BuildMetadata(schemaNamespace);
+            }
+
+            protected override List<Type> GetEdmEntityTypes() => _edmEntityTypes;
+            protected override List<Type> GetEdmFunctionImports() => _edmFunctionImports;
+        }
+
         [EdmEntity("EntityTest")]
         public class TestEntityValid : IEdmEntity
         {
@@ -59,7 +80,7 @@ namespace Cobra.Test
         {
             var expectedNamespace = "Test";
 
-            var metadataService = new MetadataService(
+            var metadataService = new TestMetadataService(
                 expectedNamespace,
                 new List<Type>(),
                 new List<Type>()
@@ -74,7 +95,7 @@ namespace Cobra.Test
         [Fact]
         public void SingleSchema_HasSingleEntityType()
         {
-            var metadataService = new MetadataService(
+            var metadataService = new TestMetadataService(
                 "Test",
                 new List<Type>
                 {
@@ -107,7 +128,7 @@ namespace Cobra.Test
         [Fact]
         public void SingleSchema_DoesNotContain_EntityTypeWithoutAttributeAndOrInterface()
         {
-            var metadataService = new MetadataService(
+            var metadataService = new TestMetadataService(
                 "Test",
                 new List<Type>
                 {
@@ -127,7 +148,7 @@ namespace Cobra.Test
         [Fact]
         public void SingleSchema_HasSingleFunctionImport()
         {
-            var metadataService = new MetadataService(
+            var metadataService = new TestMetadataService(
                 "Test",
                 new List<Type>(),
                 new List<Type>
@@ -162,7 +183,7 @@ namespace Cobra.Test
         [Fact]
         public void SingleSchema_DoesNotContain_FunctionImportWithoutAttributeAndOrInterface()
         {
-            var metadataService = new MetadataService(
+            var metadataService = new TestMetadataService(
                 "Test",
                 new List<Type>(),
                 new List<Type>

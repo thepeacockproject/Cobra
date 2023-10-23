@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 using System.Text.Json.Serialization;
-using Cobra.Server.Mvc;
+using Cobra.Server.Edm.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;

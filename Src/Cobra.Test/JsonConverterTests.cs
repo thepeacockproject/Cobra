@@ -1,9 +1,9 @@
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Text.Json;
-using Cobra.Server.Json;
-using Cobra.Server.Models;
-using Nullable = Cobra.Server.Enums.Nullable;
+using Cobra.Server.Edm.Json;
+using Cobra.Server.Hitman.Models;
+using Nullable = Cobra.Server.Edm.Enums.Nullable;
 
 namespace Cobra.Test
 {

@@ -1,12 +1,16 @@
 ﻿using System.Text.Encodings.Web;
 using System.Text.Json.Serialization;
-using Cobra.Server.Controllers.Hitman;
-using Cobra.Server.Controllers.Sniper;
 using Cobra.Server.Database;
+using Cobra.Server.Edm.Json;
+using Cobra.Server.Hitman.Interfaces;
+using Cobra.Server.Hitman.Services;
 using Cobra.Server.Interfaces;
-using Cobra.Server.Json;
 using Cobra.Server.Mvc;
 using Cobra.Server.Services;
+using Cobra.Server.Shared.Interfaces;
+using Cobra.Server.Shared.Models;
+using Cobra.Server.Sniper.Interfaces;
+using Cobra.Server.Sniper.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace Cobra.Server
@@ -62,17 +66,8 @@ namespace Cobra.Server
 
             services.AddSingleton<ISimpleLogger>(_ => new SimpleLogger("Data"));
 
-            services.AddSingleton<IMetadataServiceForHitman>(_ => new MetadataService(
-                HitmanController.SchemaNamespace,
-                HitmanController.GetEdmEntityTypes(),
-                HitmanController.GetEdmFunctionImports()
-            ));
-
-            services.AddSingleton<IMetadataServiceForSniper>(_ => new MetadataService(
-                SniperController.SchemaNamespace,
-                SniperController.GetEdmEntityTypes(),
-                SniperController.GetEdmFunctionImports()
-            ));
+            services.AddSingleton<IHitmanMetadataService, HitmanMetadataService>();
+            services.AddSingleton<ISniperMetadataService, SniperMetadataService>();
 
             services.AddTransient<FixAddMetricsContentTypeMiddleware>();
             services.AddTransient<RequestResponseLoggerMiddleware>();
@@ -89,6 +84,8 @@ namespace Cobra.Server
                 services.AddSingleton<IHitmanServer, MockedHitmanServer>();
             }
 
+            services.AddSingleton<ISniperServer, MockedSniperServer>();
+
             if (options.SteamService == Options.ESteamService.GameServer)
             {
                 services.AddSingleton<ISteamService, SteamGameServerService>();
@@ -99,11 +96,18 @@ namespace Cobra.Server
             }
         }
 
-        public void Configure(IApplicationBuilder app, Options options, IHitmanServer hitmanServer, DatabaseContext databaseContext)
+        public void Configure(
+            IApplicationBuilder app,
+            Options options,
+            IHitmanServer hitmanServer,
+            ISniperServer sniperServer,
+            DatabaseContext databaseContext
+        )
         {
             databaseContext.Database.Migrate();
 
             hitmanServer.Initialize();
+            sniperServer.Initialize();
 
             if (options.FixAddMetricsContentType)
             {

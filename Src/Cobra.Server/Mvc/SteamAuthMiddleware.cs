@@ -2,6 +2,7 @@
 using System.Text;
 using System.Text.Json;
 using Cobra.Server.Interfaces;
+using Cobra.Server.Shared.Models;
 
 namespace Cobra.Server.Mvc
 {

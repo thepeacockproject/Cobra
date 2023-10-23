@@ -1,8 +1,9 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
+using Cobra.Server.Edm.Json;
 using Cobra.Server.Interfaces;
-using Cobra.Server.Json;
+using Cobra.Server.Shared.Models;
 
 namespace Cobra.Server.Services
 {

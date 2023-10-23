@@ -1,0 +1,10 @@
+﻿namespace Cobra.Server.Edm.Models.Base
+{
+    public class EdmEntityType
+    {
+        public string Name { get; set; }
+        public List<string> Key { get; set; }
+        public List<EdmProperty> Properties { get; set; }
+        //NavigationProperties
+    }
+}

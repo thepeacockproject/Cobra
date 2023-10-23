@@ -1,5 +1,5 @@
-﻿using Cobra.Server.Controllers.Hitman;
-using Cobra.Server.Interfaces;
+﻿using Cobra.Server.Hitman.Controllers;
+using Cobra.Server.Hitman.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cobra.Server.Controllers
