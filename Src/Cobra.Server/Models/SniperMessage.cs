@@ -22,8 +22,8 @@ namespace Cobra.Server.Models
         [EdmProperty("TimestampUTC", EdmTypes.Int64, false)]
         public long TimestampUTC { get; set; }
 
-        //ReSharper disable once InconsistentNaming
-        //NOTE: Due to weird bug in Rider?
+        // https://youtrack.jetbrains.com/issue/RSRP-489484
+        // ReSharper disable once InconsistentNaming
         [EdmProperty("TextTemplateId", EdmTypes.Int32, false)]
         public int TextTemplateId { get; set; }
 
