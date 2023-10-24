@@ -123,4 +123,7 @@
   <data name="CO0002Title" xml:space="preserve">
     <value>End-of-file must contain a blank line</value>
   </data>
+  <data name="CO0003Title" xml:space="preserve">
+    <value>Closing brace must be followed by a blank line</value>
+  </data>
 </root>

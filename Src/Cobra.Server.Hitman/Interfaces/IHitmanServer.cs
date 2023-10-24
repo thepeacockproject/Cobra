@@ -1,5 +1,4 @@
 ﻿using Cobra.Server.Hitman.Models;
-using Microsoft.AspNetCore.Mvc;
 using static Cobra.Server.Hitman.Controllers.HitmanController;
 
 namespace Cobra.Server.Hitman.Interfaces

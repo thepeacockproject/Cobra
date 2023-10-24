@@ -21,7 +21,7 @@ namespace Cobra.Test
         public void Boolean_IsConvertedToString(bool input, string expected)
         {
             using var memoryStream = new MemoryStream();
-            var jsonWriter = new Utf8JsonWriter(memoryStream);
+            using var jsonWriter = new Utf8JsonWriter(memoryStream);
 
             new BooleanToStringConverter().Write(
                 jsonWriter,
@@ -44,7 +44,7 @@ namespace Cobra.Test
         public void Integer_IsConvertedToString(int input, string expected)
         {
             using var memoryStream = new MemoryStream();
-            var jsonWriter = new Utf8JsonWriter(memoryStream);
+            using var jsonWriter = new Utf8JsonWriter(memoryStream);
 
             new IntegerToStringConverter().Write(
                 jsonWriter,
@@ -67,7 +67,7 @@ namespace Cobra.Test
         public void Float_IsConvertedToString(float input, string expected)
         {
             using var memoryStream = new MemoryStream();
-            var jsonWriter = new Utf8JsonWriter(memoryStream);
+            using var jsonWriter = new Utf8JsonWriter(memoryStream);
 
             new FloatToStringConverter().Write(
                 jsonWriter,
@@ -116,7 +116,7 @@ namespace Cobra.Test
         public void Any_IsConvertedToJsonString(object input, string expected)
         {
             using var memoryStream = new MemoryStream();
-            var jsonWriter = new Utf8JsonWriter(memoryStream, new JsonWriterOptions
+            using var jsonWriter = new Utf8JsonWriter(memoryStream, new JsonWriterOptions
             {
                 Encoder = _defaultJsonSerializerOptions.Encoder
             });

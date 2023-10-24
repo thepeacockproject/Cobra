@@ -77,5 +77,14 @@ namespace Cobra.Analyzer {
                 return ResourceManager.GetString("CO0002Title", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Closing brace must be followed by a blank line.
+        /// </summary>
+        internal static string CO0003Title {
+            get {
+                return ResourceManager.GetString("CO0003Title", resourceCulture);
+            }
+        }
     }
 }

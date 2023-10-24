@@ -120,7 +120,7 @@ namespace Cobra.Server.Mvc
 
         private string EncodeSimpleJwtToken(JwtToken.JwtTokenPayload payload)
         {
-            var hasher = new HMACSHA256(_jwtSignKey);
+            using var hasher = new HMACSHA256(_jwtSignKey);
 
             var hash = Convert.ToHexString(hasher.ComputeHash(
                     Encoding.UTF8.GetBytes(
@@ -150,7 +150,7 @@ namespace Cobra.Server.Mvc
                 )
             );
 
-            var hasher = new HMACSHA256(_jwtSignKey);
+            using var hasher = new HMACSHA256(_jwtSignKey);
 
             var hash = Convert.ToHexString(hasher.ComputeHash(
                     Encoding.UTF8.GetBytes(
