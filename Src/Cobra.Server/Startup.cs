@@ -1,17 +1,14 @@
 ﻿using System.Text.Encodings.Web;
 using System.Text.Json.Serialization;
-using Cobra.Server.Database;
 using Cobra.Server.Edm.Json;
-using Cobra.Server.Hitman.Interfaces;
-using Cobra.Server.Hitman.Services;
 using Cobra.Server.Interfaces;
 using Cobra.Server.Mvc;
 using Cobra.Server.Services;
 using Cobra.Server.Shared.Interfaces;
 using Cobra.Server.Shared.Models;
-using Cobra.Server.Sniper.Interfaces;
-using Cobra.Server.Sniper.Services;
-using Microsoft.EntityFrameworkCore;
+using DatabaseCompositions = Cobra.Server.Database.Compositions;
+using HitmanCompositions = Cobra.Server.Hitman.Compositions;
+using SniperCompositions = Cobra.Server.Sniper.Compositions;
 
 namespace Cobra.Server
 {
@@ -53,61 +50,48 @@ namespace Cobra.Server
                     options.JsonSerializerOptions.Converters.Add(new IntegerToStringConverter());
                 });
 
+            services.AddHttpContextAccessor();
+
             var options = _configuration
                 .GetSection("Options")
                 .Get<Options>();
 
             services.AddSingleton(options);
 
-            services.AddDbContext<DatabaseContext>(optionsBuilder =>
-            {
-                optionsBuilder.UseSqlite(_configuration.GetConnectionString("CobraDatabase"));
-            });
-
+            //Shared
             services.AddSingleton<ISimpleLogger>(_ => new SimpleLogger("Data"));
+            services.AddSingleton<IUserService, UserService>();
 
-            services.AddSingleton<IHitmanMetadataService, HitmanMetadataService>();
-            services.AddSingleton<ISniperMetadataService, SniperMetadataService>();
+            switch (options.SteamService)
+            {
+                case Options.ESteamService.GameServer:
+                    services.AddSingleton<ISteamService, SteamGameServerService>();
+                    break;
+                case Options.ESteamService.WebApi:
+                    services.AddSingleton<ISteamService, SteamWebApiService>();
+                    break;
+            }
 
+            //Middleware
             services.AddTransient<FixAddMetricsContentTypeMiddleware>();
             services.AddTransient<RequestResponseLoggerMiddleware>();
             services.AddTransient<SteamAuthMiddleware>();
 
-            services.AddSingleton<IContractsService, ContractsService>();
-
-            if (options.UseCustomContracts)
-            {
-                services.AddSingleton<IHitmanServer, LocalHitmanServer>();
-            }
-            else
-            {
-                services.AddSingleton<IHitmanServer, MockedHitmanServer>();
-            }
-
-            services.AddSingleton<ISniperServer, MockedSniperServer>();
-
-            if (options.SteamService == Options.ESteamService.GameServer)
-            {
-                services.AddSingleton<ISteamService, SteamGameServerService>();
-            }
-            else if (options.SteamService == Options.ESteamService.WebApi)
-            {
-                services.AddSingleton<ISteamService, SteamWebApiService>();
-            }
+            //Compositions
+            DatabaseCompositions.ConfigureServices(services, _configuration, options);
+            HitmanCompositions.ConfigureServices(services, _configuration, options);
+            SniperCompositions.ConfigureServices(services, _configuration, options);
         }
 
         public void Configure(
             IApplicationBuilder app,
-            Options options,
-            IHitmanServer hitmanServer,
-            ISniperServer sniperServer,
-            DatabaseContext databaseContext
+            IServiceProvider services,
+            Options options
         )
         {
-            databaseContext.Database.Migrate();
-
-            hitmanServer.Initialize();
-            sniperServer.Initialize();
+            DatabaseCompositions.Configure(services);
+            HitmanCompositions.Configure(services);
+            SniperCompositions.Configure(services);
 
             if (options.FixAddMetricsContentType)
             {

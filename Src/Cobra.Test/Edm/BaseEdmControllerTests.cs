@@ -6,9 +6,9 @@ using Cobra.Server.Edm.Interfaces;
 using Cobra.Server.Edm.Json;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Cobra.Test
+namespace Cobra.Test.Edm
 {
-    public class BaseControllerTests
+    public class BaseEdmControllerTests
     {
         public class TestClass
         {
@@ -75,7 +75,7 @@ namespace Cobra.Test
 
         private readonly TestController _testController;
 
-        public BaseControllerTests()
+        public BaseEdmControllerTests()
         {
             _testController = new TestController();
         }

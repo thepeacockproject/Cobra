@@ -26,6 +26,7 @@
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <OutputItemType>Analyzer</OutputItemType>
     </ProjectReference>
+    <ProjectReference Include="..\Cobra.Server.Database\Cobra.Server.Database.csproj" />
     <ProjectReference Include="..\Cobra.Server.Shared\Cobra.Server.Shared.csproj" />
     <ProjectReference Include="..\Cobra.Server.Hitman\Cobra.Server.Hitman.csproj" />
     <ProjectReference Include="..\Cobra.Server.Sniper\Cobra.Server.Sniper.csproj" />

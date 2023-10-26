@@ -2,6 +2,13 @@
 {
     public class Options
     {
+        public enum EGameService
+        {
+            Mocked = 0,
+            Local,
+            Public
+        }
+
         public enum ESteamService
         {
             None = 0,
@@ -15,7 +22,7 @@
         public bool EnableResponseBodyLogging { get; set; } = false;
         public string MockedContractSteamId { get; set; } = "76561198161220058";
         public int WalletAmount { get; set; } = 1337;
-        public bool UseCustomContracts { get; set; } = false;
+        public EGameService GameService { get; set; } = EGameService.Mocked;
         public int JwtTokenExpirationInSeconds { get; set; } = 60 * 60 * 8; //NOTE: 8 hours
         public string JwtSignKey { get; set; } = Guid.NewGuid().ToString();
         public ESteamService SteamService { get; set; } = ESteamService.None;

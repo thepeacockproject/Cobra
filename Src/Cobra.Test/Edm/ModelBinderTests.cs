@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Text.Json.Serialization;
 using Cobra.Server.Edm.Mvc;
 using Microsoft.AspNetCore.Http;
@@ -6,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 using Microsoft.Extensions.Primitives;
 
-namespace Cobra.Test
+namespace Cobra.Test.Edm
 {
     public class ModelBinderTests
     {
@@ -16,6 +17,7 @@ namespace Cobra.Test
         }
 
         //ReSharper disable UnassignedGetOnlyAutoProperty
+        [ExcludeFromCodeCoverage]
         public class TestModelMetadata : ModelMetadata
         {
             public override IReadOnlyDictionary<object, object> AdditionalValues { get; }

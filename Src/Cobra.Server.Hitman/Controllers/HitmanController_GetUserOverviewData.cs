@@ -26,9 +26,9 @@ namespace Cobra.Server.Hitman.Controllers
 
         [HttpGet]
         [Route("GetUserOverviewData")]
-        public IActionResult GetUserOverviewData([FromQuery] GetUserOverviewDataRequest request)
+        public async Task<IActionResult> GetUserOverviewData([FromQuery] GetUserOverviewDataRequest request)
         {
-            return JsonEntryResponse(_hitmanServer.GetUserOverviewData(request));
+            return JsonEntryResponse(await _hitmanServer.GetUserOverviewData(request));
         }
     }
 }

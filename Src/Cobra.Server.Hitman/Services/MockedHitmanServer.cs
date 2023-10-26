@@ -287,9 +287,9 @@ namespace Cobra.Server.Hitman.Services
             return 10;
         }
 
-        public GetUserOverviewData GetUserOverviewData(GetUserOverviewDataRequest request)
+        public Task<GetUserOverviewData> GetUserOverviewData(GetUserOverviewDataRequest request)
         {
-            return new GetUserOverviewData
+            return Task.FromResult(new GetUserOverviewData
             {
                 ContractPlays = 1337,
                 CompetitionPlays = 1337,
@@ -303,12 +303,12 @@ namespace Cobra.Server.Hitman.Services
                 RichestRank = 1337,
                 TrophiesEarned = 1337,
                 WalletAmount = _options.WalletAmount
-            };
+            });
         }
 
-        public int GetUserWallet(GetUserWalletRequest request)
+        public Task<int> GetUserWallet(GetUserWalletRequest request)
         {
-            return _options.WalletAmount;
+            return Task.FromResult(_options.WalletAmount);
         }
 
         public void InviteToCompetition(InviteToCompetitionRequest request)
@@ -365,9 +365,9 @@ namespace Cobra.Server.Hitman.Services
             //Do nothing
         }
 
-        public void UpdateUserInfo(UpdateUserInfoRequest request)
+        public Task UpdateUserInfo(UpdateUserInfoRequest request)
         {
-            //Do nothing
+            return Task.CompletedTask;
         }
 
         public void UploadContract(UploadContractRequest request)

@@ -3,8 +3,9 @@ using Cobra.Server.Edm.Enums;
 using Cobra.Server.Edm.Interfaces;
 using Cobra.Server.Edm.Models.Base;
 using Cobra.Server.Edm.Services;
+using System.Diagnostics.CodeAnalysis;
 
-namespace Cobra.Test
+namespace Cobra.Test.Edm
 {
     public class MetadataServiceTests
     {
@@ -29,6 +30,7 @@ namespace Cobra.Test
             protected override List<Type> GetEdmFunctionImports() => _edmFunctionImports;
         }
 
+        [ExcludeFromCodeCoverage]
         [EdmEntity("EntityTest")]
         public class TestEntityValid : IEdmEntity
         {
@@ -52,6 +54,7 @@ namespace Cobra.Test
             //Do nothing
         }
 
+        [ExcludeFromCodeCoverage]
         [EdmFunctionImport("FunctionImportTest", HttpMethods.GET, "Test.EntityTest")]
         public class TestFunctionImportValid : IEdmFunctionImport
         {

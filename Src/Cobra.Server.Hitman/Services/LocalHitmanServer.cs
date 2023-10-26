@@ -52,7 +52,10 @@ namespace Cobra.Server.Hitman.Services
 
         private UserProfile _userProfile;
 
-        public LocalHitmanServer(ISimpleLogger logger, IContractsService contractsService)
+        public LocalHitmanServer(
+            ISimpleLogger logger,
+            IContractsService contractsService
+        )
         {
             _logger = logger;
             _contractsService = contractsService;
@@ -124,19 +127,19 @@ namespace Cobra.Server.Hitman.Services
             return 0;
         }
 
-        public GetUserOverviewData GetUserOverviewData(GetUserOverviewDataRequest request)
+        public Task<GetUserOverviewData> GetUserOverviewData(GetUserOverviewDataRequest request)
         {
-            return new GetUserOverviewData
+            return Task.FromResult(new GetUserOverviewData
             {
                 WalletAmount = _userProfile.TotalEarnings,
                 ContractPlays = _userProfile.PlayedContracts.Sum(x => x.Value.Plays),
                 ContractsCreated = _userProfile.ContractsCreated
-            };
+            });
         }
 
-        public int GetUserWallet(GetUserWalletRequest request)
+        public Task<int> GetUserWallet(GetUserWalletRequest request)
         {
-            return _userProfile.WalletAmount;
+            return Task.FromResult(_userProfile.WalletAmount);
         }
 
         public void InviteToCompetition(InviteToCompetitionRequest request)
@@ -240,7 +243,7 @@ namespace Cobra.Server.Hitman.Services
             //Do nothing
         }
 
-        public void UpdateUserInfo(UpdateUserInfoRequest request)
+        public Task UpdateUserInfo(UpdateUserInfoRequest request)
         {
             SaveUserProfile(() =>
             {
@@ -249,6 +252,8 @@ namespace Cobra.Server.Hitman.Services
 
                 request.Friends.ForEach(x => _userProfile.Friends.Add(x));
             });
+
+            return Task.CompletedTask;
         }
 
         public void UploadContract(UploadContractRequest request)

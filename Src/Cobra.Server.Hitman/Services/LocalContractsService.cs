@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.WebUtilities;
 
 namespace Cobra.Server.Hitman.Services
 {
-    public class ContractsService : IContractsService
+    public class LocalContractsService : IContractsService
     {
         public class SimpleContract
         {
@@ -33,7 +33,7 @@ namespace Cobra.Server.Hitman.Services
 
         private readonly ConcurrentDictionary<string, Contract> _contractCache;
 
-        public ContractsService()
+        public LocalContractsService()
         {
             _contractCache = new ConcurrentDictionary<string, Contract>();
         }

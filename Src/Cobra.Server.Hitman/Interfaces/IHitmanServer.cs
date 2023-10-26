@@ -15,8 +15,8 @@ namespace Cobra.Server.Hitman.Interfaces
         Contract GetFeaturedContract(GetFeaturedContractRequest request);
         List<Message> GetMessages(GetMessagesRequest request);
         int GetNewMessageCount(GetNewMessageCountRequest request);
-        GetUserOverviewData GetUserOverviewData(GetUserOverviewDataRequest request);
-        int GetUserWallet(GetUserWalletRequest request);
+        Task<GetUserOverviewData> GetUserOverviewData(GetUserOverviewDataRequest request);
+        Task<int> GetUserWallet(GetUserWalletRequest request);
         void InviteToCompetition(InviteToCompetitionRequest request);
         void MarkContractAsPlayed(MarkContractAsPlayedRequest request);
         //MergeUserTokens
@@ -29,7 +29,7 @@ namespace Cobra.Server.Hitman.Interfaces
         void SetMessageReadStatus(SetMessageReadStatusRequest request);
         void UpdateContractLikeDislikes(UpdateContractLikeDislikesRequest request);
         //UpdateDLCInfo
-        void UpdateUserInfo(UpdateUserInfoRequest request);
+        Task UpdateUserInfo(UpdateUserInfoRequest request);
         //UpdateUserProfileChallenges
         //UpdateUserProfileGameStats
         //UpdateUserProfileLevelProgression

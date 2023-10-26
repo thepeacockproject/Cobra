@@ -7,10 +7,12 @@
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <IsPackable>false</IsPackable>
+    <NoWarn>JSON002</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.7.2" />
+    <PackageReference Include="Moq" Version="4.20.69" />
     <PackageReference Include="xunit" Version="2.5.3" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -29,6 +31,7 @@
     </ProjectReference>
     <ProjectReference Include="..\Cobra.Server.Edm\Cobra.Server.Edm.csproj" />
     <ProjectReference Include="..\Cobra.Server.Hitman\Cobra.Server.Hitman.csproj" />
+    <ProjectReference Include="..\Cobra.Server\Cobra.Server.csproj" />
   </ItemGroup>
 
 </Project>

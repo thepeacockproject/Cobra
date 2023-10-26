@@ -5,7 +5,7 @@ using Cobra.Server.Edm.Json;
 using Cobra.Server.Hitman.Models;
 using Nullable = Cobra.Server.Edm.Enums.Nullable;
 
-namespace Cobra.Test
+namespace Cobra.Test.Edm
 {
     public class JsonConverterTests
     {
