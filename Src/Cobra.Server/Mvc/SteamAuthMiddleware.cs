@@ -8,7 +8,7 @@ using Cobra.Server.Shared.Models;
 
 namespace Cobra.Server.Mvc
 {
-    public class SteamAuthMiddleware : IMiddleware
+    public class SteamAuthMiddleware : ISteamAuthMiddleware
     {
         private sealed class JwtToken
         {

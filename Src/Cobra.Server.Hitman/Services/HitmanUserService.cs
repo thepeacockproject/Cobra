@@ -2,6 +2,7 @@
 using Cobra.Server.Database.Models;
 using Cobra.Server.Hitman.Interfaces;
 using Cobra.Server.Hitman.Models;
+using EFCore.BulkExtensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace Cobra.Server.Hitman.Services
@@ -45,12 +46,13 @@ namespace Cobra.Server.Hitman.Services
             return user?.Wallet;
         }
 
-        public async Task UpdateUserInfo(ulong userId, string displayName, int country, List<ulong> friends)
+        public async Task UpdateUserInfo(ulong userId, string displayName, int country, HashSet<ulong> friends)
         {
             await using var databaseContext = await _databaseContextFactory.CreateDbContextAsync();
 
             var user = await databaseContext.Users
                 .Include(x => x.Friends)
+                .AsSplitQuery()
                 .FirstOrDefaultAsync(x => x.Id == userId);
 
             if (user == null)
@@ -66,14 +68,27 @@ namespace Cobra.Server.Hitman.Services
             user.DisplayName = displayName;
             user.Country = country;
 
-            //NOTE: This will effectively drop old friends and add new ones
-            user.Friends = friends.Select(x => new UserFriend
+            //Remove old friends
+            foreach (var userFriend in user.Friends.Where(friend => !friends.Contains(friend.SteamId)))
             {
-                User = user,
-                SteamId = x
-            }).ToList();
+                databaseContext.Entry(userFriend).State = EntityState.Deleted;
+            }
 
-            await databaseContext.SaveChangesAsync();
+            //Add new friends
+            var existingFriends = user.Friends
+                .Select(x => x.SteamId)
+                .ToHashSet();
+
+            foreach (var friend in friends.Where(friend => !existingFriends.Contains(friend)))
+            {
+                user.Friends.Add(new UserFriend
+                {
+                    User = user,
+                    SteamId = friend
+                });
+            }
+
+            await databaseContext.BulkSaveChangesAsync();
         }
     }
 }

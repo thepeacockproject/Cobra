@@ -302,13 +302,13 @@ namespace Cobra.Server.Hitman.Services
                 RichestAverage = 1337,
                 RichestRank = 1337,
                 TrophiesEarned = 1337,
-                WalletAmount = _options.WalletAmount
+                WalletAmount = _options.MockedWalletAmount
             });
         }
 
         public Task<int> GetUserWallet(GetUserWalletRequest request)
         {
-            return Task.FromResult(_options.WalletAmount);
+            return Task.FromResult(_options.MockedWalletAmount);
         }
 
         public void InviteToCompetition(InviteToCompetitionRequest request)

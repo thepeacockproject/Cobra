@@ -6,6 +6,7 @@ obj
 
 # Server
 /Src/Cobra.Server/Data
+/Src/Cobra.Server/appsettings.user.json
 
 # Other
 /Res

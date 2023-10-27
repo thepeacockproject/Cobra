@@ -73,9 +73,19 @@ namespace Cobra.Server
             }
 
             //Middleware
-            services.AddTransient<FixAddMetricsContentTypeMiddleware>();
-            services.AddTransient<RequestResponseLoggerMiddleware>();
-            services.AddTransient<SteamAuthMiddleware>();
+            services.AddSingleton<FixAddMetricsContentTypeMiddleware>();
+            services.AddSingleton<RequestResponseLoggerMiddleware>();
+
+            switch (options.SteamService)
+            {
+                case Options.ESteamService.Mocked:
+                    services.AddSingleton<ISteamAuthMiddleware, MockedSteamAuthMiddleware>();
+                    break;
+                case Options.ESteamService.GameServer:
+                case Options.ESteamService.WebApi:
+                    services.AddSingleton<ISteamAuthMiddleware, SteamAuthMiddleware>();
+                    break;
+            }
 
             //Compositions
             DatabaseCompositions.ConfigureServices(services, _configuration, options);
@@ -105,7 +115,7 @@ namespace Cobra.Server
 
             if (options.SteamService != Options.ESteamService.None)
             {
-                app.UseMiddleware<SteamAuthMiddleware>();
+                app.UseMiddleware<ISteamAuthMiddleware>();
             }
 
             app.UseMvc();

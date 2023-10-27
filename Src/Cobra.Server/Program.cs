@@ -13,6 +13,10 @@ namespace Cobra.Server
         {
             return WebHost
                 .CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration(builder =>
+                {
+                    builder.AddJsonFile("appsettings.user.json", true);
+                })
                 .UseKestrel(options =>
                 {
                     //NOTE: Since the game doesn't actually POST data...

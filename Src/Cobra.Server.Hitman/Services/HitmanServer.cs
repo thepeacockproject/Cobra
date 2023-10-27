@@ -134,7 +134,7 @@ namespace Cobra.Server.Hitman.Services
 
             var friends = request.Friends
                 .Select(ulong.Parse)
-                .ToList();
+                .ToHashSet();
 
             //TODO: Validate if country is a valid id, this is a non-standard and will have to be extracted from the game.
 

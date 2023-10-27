@@ -6,6 +6,6 @@ namespace Cobra.Server.Hitman.Interfaces
     {
         Task<GetUserOverviewData> GetUserOverviewData(ulong userId);
         Task<int?> GetUserWallet(ulong userId);
-        Task UpdateUserInfo(ulong userId, string displayName, int country, List<ulong> friends);
+        Task UpdateUserInfo(ulong userId, string displayName, int country, HashSet<ulong> friends);
     }
 }
