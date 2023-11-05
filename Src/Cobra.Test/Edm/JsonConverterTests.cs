@@ -83,33 +83,32 @@ namespace Cobra.Test.Edm
         }
 
         //ReSharper disable once InconsistentNaming
-        public static IEnumerable<object[]> Any_IsConvertedToJsonString_Data =>
-            new List<object[]>
+        public static IEnumerable<object[]> Any_IsConvertedToJsonString_Data => new List<object[]>
+        {
+            new object[] { 47, "\"47\"" },
+            new object[] { "47", "\"\\\"47\\\"\"" },
+            new object[] { true, "\"true\"" },
+            new object[] { false, "\"false\"" },
+            new object[] { 4.7f, "\"4.7\"" },
+            new object[]
             {
-                new object[] { 47, "\"47\"" },
-                new object[] { "47", "\"\\\"47\\\"\"" },
-                new object[] { true, "\"true\"" },
-                new object[] { false, "\"false\"" },
-                new object[] { 4.7f, "\"4.7\"" },
-                new object[]
+                new Competition
                 {
-                    new Competition
-                    {
-                        Id = 47,
-                        EndTimeUTC = DateTime.Parse("2023-1-1"),
-                        AllowInvites = false,
-                        CompetitionCreator = "Test",
-                        DaysRemaining = 47
-                    },
-                    "\"{" +
-                    "\\\"_id\\\":\\\"47\\\"," +
-                    "\\\"EndTimeUTC\\\":\\\"2023-01-01T00:00:00\\\"," +
-                    "\\\"AllowInvites\\\":false," +
-                    "\\\"CompetitionCreator\\\":\\\"Test\\\"," +
-                    "\\\"DaysRemaining\\\":47" +
-                    "}\""
-                }
-            };
+                    Id = 47,
+                    EndTimeUTC = DateTime.Parse("2023-1-1"),
+                    AllowInvites = false,
+                    CompetitionCreator = "Test",
+                    DaysRemaining = 47
+                },
+                "\"{" +
+                "\\\"_id\\\":\\\"47\\\"," +
+                "\\\"EndTimeUTC\\\":\\\"2023-01-01T00:00:00\\\"," +
+                "\\\"AllowInvites\\\":false," +
+                "\\\"CompetitionCreator\\\":\\\"Test\\\"," +
+                "\\\"DaysRemaining\\\":47" +
+                "}\""
+            }
+        };
 
         [Theory]
         [MemberData(nameof(Any_IsConvertedToJsonString_Data))]

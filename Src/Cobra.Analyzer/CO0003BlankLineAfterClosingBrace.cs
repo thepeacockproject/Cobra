@@ -19,20 +19,20 @@ namespace Cobra.Analyzer
 
         private const SyntaxKind InitKeyword = (SyntaxKind)8443;
 
-        private static readonly LocalizableString Title = new LocalizableResourceString(
+        private static readonly LocalizableString _title = new LocalizableResourceString(
             nameof(Resources.CO0003Title), Resources.ResourceManager, typeof(Resources)
         );
 
         internal static readonly DiagnosticDescriptor Descriptor = new DiagnosticDescriptor(
             DiagnosticId,
-            Title,
-            Title,
+            _title,
+            _title,
             Constants.Category,
             DiagnosticSeverity.Error,
             true
         );
 
-        private static readonly Action<SyntaxTreeAnalysisContext> SyntaxTreeAction = HandleSyntaxTree;
+        private static readonly Action<SyntaxTreeAnalysisContext> _syntaxTreeAction = HandleSyntaxTree;
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = ImmutableArray.Create(Descriptor);
 
@@ -41,7 +41,7 @@ namespace Cobra.Analyzer
             context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
             context.EnableConcurrentExecution();
 
-            context.RegisterSyntaxTreeAction(SyntaxTreeAction);
+            context.RegisterSyntaxTreeAction(_syntaxTreeAction);
         }
 
         private static void HandleSyntaxTree(SyntaxTreeAnalysisContext context)

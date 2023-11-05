@@ -105,23 +105,22 @@ namespace Cobra.Test.Edm
         }
 
         //ReSharper disable once InconsistentNaming
-        public static IEnumerable<object[]> String_Is_NormalizedAndSplitted_Data =>
-            new List<object[]>
-            {
-                new object[] { null, null },
-                new object[] { "", new List<string>() },
-                new object[] { "''", new List<string>() },
-                new object[] { "' '", new List<string>() },
-                new object[] { "'47'", new List<string> { "47" } },
-                new object[] { "'47,'", new List<string> { "47" } },
-                new object[] { "'47, '", new List<string> { "47" } },
-                new object[] { "'47,47'", new List<string> { "47", "47" } },
-                new object[] { "'47 , 47'", new List<string> { "47", "47" } },
-                new object[] { "',47'", new List<string> { "47" } },
-                new object[] { "'47;'", new List<string> { "47" } },
-                new object[] { "'47;47'", new List<string> { "47", "47" } },
-                new object[] { "';47'", new List<string> { "47" } }
-            };
+        public static IEnumerable<object[]> String_Is_NormalizedAndSplitted_Data => new List<object[]>
+        {
+            new object[] { null, null },
+            new object[] { "", new List<string>() },
+            new object[] { "''", new List<string>() },
+            new object[] { "' '", new List<string>() },
+            new object[] { "'47'", new List<string> { "47" } },
+            new object[] { "'47,'", new List<string> { "47" } },
+            new object[] { "'47, '", new List<string> { "47" } },
+            new object[] { "'47,47'", new List<string> { "47", "47" } },
+            new object[] { "'47 , 47'", new List<string> { "47", "47" } },
+            new object[] { "',47'", new List<string> { "47" } },
+            new object[] { "'47;'", new List<string> { "47" } },
+            new object[] { "'47;47'", new List<string> { "47", "47" } },
+            new object[] { "';47'", new List<string> { "47" } }
+        };
 
         [Theory]
         [MemberData(nameof(String_Is_NormalizedAndSplitted_Data))]
@@ -150,24 +149,23 @@ namespace Cobra.Test.Edm
         }
 
         //ReSharper disable once InconsistentNaming
-        public static IEnumerable<object[]> String_Is_NormalizedAndJsonDeserialized_Data =>
-            new List<object[]>
+        public static IEnumerable<object[]> String_Is_NormalizedAndJsonDeserialized_Data => new List<object[]>
+        {
+            new object[] { null, null },
+            new object[] { "", null },
+            new object[] { "''", null },
+            new object[] { "' '", null },
+            new object[] { "'\"47\"'", "47" },
+            new object[] { "'47'", 47 },
+            new object[] { "'4.7'", 4.7f },
+            new object[] { "'[]'", new List<TestModel>() },
+            new object[]
             {
-                new object[] { null, null },
-                new object[] { "", null },
-                new object[] { "''", null },
-                new object[] { "' '", null },
-                new object[] { "'\"47\"'", "47" },
-                new object[] { "'47'", 47 },
-                new object[] { "'4.7'", 4.7f },
-                new object[] { "'[]'", new List<TestModel>() },
-                new object[]
-                {
-                    "'[{\"_id\":47},{\"_id\":47}]'",
-                    new List<TestModel> { new() { Id = 47 }, new() { Id = 47 } }
-                },
-                new object[] { "'{\"_id\":47}'", new TestModel { Id = 47 } }
-            };
+                "'[{\"_id\":47},{\"_id\":47}]'",
+                new List<TestModel> { new() { Id = 47 }, new() { Id = 47 } }
+            },
+            new object[] { "'{\"_id\":47}'", new TestModel { Id = 47 } }
+        };
 
         [Theory]
         [MemberData(nameof(String_Is_NormalizedAndJsonDeserialized_Data))]

@@ -13,29 +13,29 @@ namespace Cobra.Analyzer
     {
         public const string DiagnosticId = "CO0001";
 
-        private static readonly LocalizableString Title = new LocalizableResourceString(
+        private static readonly LocalizableString _title = new LocalizableResourceString(
             nameof(Resources.CO0001Title), Resources.ResourceManager, typeof(Resources)
         );
 
-        private static readonly DiagnosticDescriptor Descriptor = new DiagnosticDescriptor(
+        private static readonly DiagnosticDescriptor _descriptor = new DiagnosticDescriptor(
             DiagnosticId,
-            Title,
-            Title,
+            _title,
+            _title,
             Constants.Category,
             DiagnosticSeverity.Error,
             true
         );
 
-        private static readonly Action<SyntaxTreeAnalysisContext> SyntaxTreeAction = HandleSyntaxTree;
+        private static readonly Action<SyntaxTreeAnalysisContext> _syntaxTreeAction = HandleSyntaxTree;
 
-        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = ImmutableArray.Create(Descriptor);
+        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = ImmutableArray.Create(_descriptor);
 
         public override void Initialize(AnalysisContext context)
         {
             context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
             context.EnableConcurrentExecution();
 
-            context.RegisterSyntaxTreeAction(SyntaxTreeAction);
+            context.RegisterSyntaxTreeAction(_syntaxTreeAction);
         }
 
         private static void HandleSyntaxTree(SyntaxTreeAnalysisContext context)
@@ -68,7 +68,7 @@ namespace Cobra.Analyzer
                 return;
             }
 
-            context.ReportDiagnostic(Diagnostic.Create(Descriptor, trivia.GetLocation()));
+            context.ReportDiagnostic(Diagnostic.Create(_descriptor, trivia.GetLocation()));
         }
     }
 }
