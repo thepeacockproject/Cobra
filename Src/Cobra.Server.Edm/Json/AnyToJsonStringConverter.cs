@@ -7,7 +7,11 @@ namespace Cobra.Server.Edm.Json
     {
         public override T Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            return JsonSerializer.Deserialize<T>(reader.GetString());
+            var value = reader.GetString();
+
+            return value == null
+                ? default
+                : JsonSerializer.Deserialize<T>(value);
         }
 
         public override void Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)

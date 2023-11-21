@@ -242,15 +242,13 @@ namespace Cobra.Test.Server
             {
                 Request =
                 {
-                    Path = path,
-                    Headers =
-                    {
-                        { "OS-AuthProvider", authProvider},
-                        { "OS-AuthTicketData", authTicketData},
-                        { "OS-UID", uid}
-                    }
+                    Path = path
                 }
             };
+
+            httpContext.Request.Headers.Append("OS-UID", uid);
+            httpContext.Request.Headers.Append("OS-AuthTicketData", authTicketData);
+            httpContext.Request.Headers.Append("OS-AuthProvider", authProvider);
 
             return (steamServiceMock, steamAuthMiddleware, httpContext);
         }

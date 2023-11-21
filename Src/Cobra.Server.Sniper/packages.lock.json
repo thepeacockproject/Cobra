@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "dependencies": {
+    "net8.0": {
+      "cobra.server.edm": {
+        "type": "Project"
+      },
+      "cobra.server.shared": {
+        "type": "Project"
+      }
+    }
+  }
+}

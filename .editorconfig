@@ -211,6 +211,8 @@ dotnet_style_qualification_for_property = false:silent
 dotnet_style_qualification_for_field = false:silent
 dotnet_style_parentheses_in_other_operators = never_if_unnecessary:silent
 dotnet_style_qualification_for_event = false:silent
+dotnet_style_prefer_collection_expression = true:suggestion
+csharp_style_prefer_primary_constructors = false:suggestion
 tab_width = 4
 indent_size = 4
 end_of_line = crlf
@@ -268,11 +270,13 @@ csharp_space_around_binary_operators = before_and_after
 # Analyzer rules
 dotnet_analyzer_diagnostic.category-Style.severity = error
 
+dotnet_diagnostic.IDE0003.severity = error #this
 dotnet_diagnostic.IDE0007.severity = error #var
 dotnet_diagnostic.IDE0008.severity = none #explicit type
 dotnet_diagnostic.IDE0010.severity = none #switch statement cases
 dotnet_diagnostic.IDE0019.severity = suggestion #null-check pattern matching
 dotnet_diagnostic.IDE0022.severity = suggestion #block-body method
+dotnet_diagnostic.IDE0028.severity = none #simplified collection initialization
 dotnet_diagnostic.IDE0032.severity = suggestion #auto-property
 dotnet_diagnostic.IDE0039.severity = suggestion #local method
 dotnet_diagnostic.IDE0042.severity = suggestion #desconstruct tuple
@@ -289,8 +293,9 @@ dotnet_diagnostic.IDE0090.severity = suggestion #simplified new
 dotnet_diagnostic.IDE0220.severity = suggestion #foreach explicit cast
 dotnet_diagnostic.IDE0240.severity = silent #nullable directive
 dotnet_diagnostic.IDE0270.severity = suggestion #simplified null-check
-
+dotnet_diagnostic.IDE0290.severity = none #primary constructor
 dotnet_diagnostic.IDE1006.severity = error #naming rules
+dotnet_diagnostic.IDE2006.severity = none #blank line arrow expression
 
 dotnet_diagnostic.CS1591.severity = none #documentation
 
