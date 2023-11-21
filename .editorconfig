@@ -212,7 +212,6 @@ dotnet_style_qualification_for_field = false:silent
 dotnet_style_parentheses_in_other_operators = never_if_unnecessary:silent
 dotnet_style_qualification_for_event = false:silent
 dotnet_style_prefer_collection_expression = true:suggestion
-csharp_style_prefer_primary_constructors = false:suggestion
 tab_width = 4
 indent_size = 4
 end_of_line = crlf
@@ -266,6 +265,7 @@ csharp_style_var_elsewhere = true:error
 csharp_style_var_when_type_is_apparent = true:error
 csharp_style_var_for_built_in_types = true:error
 csharp_space_around_binary_operators = before_and_after
+csharp_style_prefer_primary_constructors = false:suggestion
 
 # Analyzer rules
 dotnet_analyzer_diagnostic.category-Style.severity = error

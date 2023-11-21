@@ -1,0 +1,41 @@
+name: Server - Build and Test
+
+env:
+  DOTNET_VERSION: '8.x'
+  SOLUTION: Cobra.sln
+  CONFIGURATION: Release
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    - name: Cache dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.nuget/packages
+        key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-nuget-
+            
+    - name: Restore dependencies
+      run: dotnet restore ${{ env.SOLUTION }}
+      
+    - name: Build
+      run: dotnet build --no-restore --configuration ${{ env.CONFIGURATION }} ${{ env.SOLUTION }}
+      
+    - name: Test
+      run: dotnet test --no-build --verbosity normal ${{ env.SOLUTION }}
