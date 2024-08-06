@@ -9,7 +9,7 @@
             "type": "shell",
             "args": [
                 "build",
-                "Src\\HM5.Server\\HM5.Server.csproj",
+                "Src\\Cobra.Server\\Cobra.Server.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -25,7 +25,7 @@
             "type": "shell",
             "args": [
                 "test",
-                "Src\\HM5.Test\\HM5.Test.csproj",
+                "Src\\Cobra.Test\\Cobra.Test.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
