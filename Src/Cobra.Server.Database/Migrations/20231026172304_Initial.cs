@@ -222,7 +222,7 @@ namespace Cobra.Server.Database.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_ContractTargets_Name_WeaponToken_OutfitToken_AmmoType_SpecialSituation",
                 table: "ContractTargets",
-                columns: new[] { "Name", "WeaponToken", "OutfitToken", "AmmoType", "SpecialSituation" },
+                columns: ["Name", "WeaponToken", "OutfitToken", "AmmoType", "SpecialSituation"],
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -243,7 +243,7 @@ namespace Cobra.Server.Database.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_UserContracts_UserId_Queued",
                 table: "UserContracts",
-                columns: new[] { "UserId", "Queued" });
+                columns: ["UserId", "Queued"]);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_Country",
