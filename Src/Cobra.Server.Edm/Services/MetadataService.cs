@@ -90,7 +90,7 @@ namespace Cobra.Server.Edm.Services
             var functions = functionNames.Select(x => new EdmFunctionImport
             {
                 Name = x,
-                HttpMethod = HttpMethods.POST
+                HttpMethod = HttpMethods.Post
             }).ToList();
 
             var generatedFunctions = edmImportFunctions

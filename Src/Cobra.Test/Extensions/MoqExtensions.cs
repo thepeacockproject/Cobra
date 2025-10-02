@@ -5,7 +5,7 @@ namespace Cobra.Test.Extensions
 {
     public static class MoqExtensions
     {
-        public static Expression<Func<T, TResult>> Expression<T, TResult>(this Mock<T> mock, Expression<Func<T, TResult>> expression)
+        public static Expression<Func<T, TResult>> Expression<T, TResult>(this Mock<T> _, Expression<Func<T, TResult>> expression)
             where T : class
         {
             return expression;

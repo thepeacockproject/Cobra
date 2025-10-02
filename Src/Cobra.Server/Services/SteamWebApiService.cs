@@ -29,7 +29,7 @@ namespace Cobra.Server.Services
             public bool PublisherBanned { get; set; }
         }
 
-        private const string API_URL = "https://api.steampowered.com/ISteamUserAuth/AuthenticateUserTicket/v1";
+        private const string ApiUrl = "https://api.steampowered.com/ISteamUserAuth/AuthenticateUserTicket/v1";
 
         private readonly HttpClient _httpClient;
         private readonly string _steamWebApiKey;
@@ -59,7 +59,7 @@ namespace Cobra.Server.Services
             try
             {
                 var response = await _httpClient.GetStringAsync(
-                    $"{API_URL}?key={key}&appId={appId}&ticket={ticket}"
+                    $"{ApiUrl}?key={key}&appId={appId}&ticket={ticket}"
                 );
 
                 var jsonResponse = JsonSerializer.Deserialize<JsonObject>(response);

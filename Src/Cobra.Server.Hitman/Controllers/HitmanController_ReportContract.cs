@@ -13,7 +13,7 @@ namespace Cobra.Server.Hitman.Controllers
      */
     public partial class HitmanController
     {
-        [EdmFunctionImport("ReportContract", HttpMethods.GET, null)]
+        [EdmFunctionImport("ReportContract", HttpMethods.Get, null)]
         public class ReportContractRequest : IEdmFunctionImport
         {
             [NormalizedString]

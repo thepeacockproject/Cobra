@@ -12,7 +12,7 @@ namespace Cobra.Server.Sniper.Controllers
      */
     public partial class SniperController
     {
-        [EdmFunctionImport("GetPerformanceIndexAll", HttpMethods.GET, null)]
+        [EdmFunctionImport("GetPerformanceIndexAll", HttpMethods.Get, null)]
         public class GetPerformanceIndexAllRequest : IEdmFunctionImport
         {
             [SFunctionParameter("leaderboardid", EdmTypes.Int32)]

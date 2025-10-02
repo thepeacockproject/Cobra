@@ -11,7 +11,7 @@ namespace Cobra.Server.Sniper.Controllers
      */
     public partial class SniperController
     {
-        [EdmFunctionImport("SetMessageReadStatus", HttpMethods.GET, null)]
+        [EdmFunctionImport("SetMessageReadStatus", HttpMethods.Get, null)]
         public class SetMessageReadStatusRequest : IEdmFunctionImport
         {
             [SFunctionParameter("messageId", EdmTypes.Int32)]

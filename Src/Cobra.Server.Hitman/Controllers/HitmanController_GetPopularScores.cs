@@ -13,7 +13,7 @@ namespace Cobra.Server.Hitman.Controllers
     {
         [EdmFunctionImport(
             "GetPopularScores",
-            HttpMethods.GET,
+            HttpMethods.Get,
             $"Collection({SchemaNamespace}.ScoreEntry)"
         )]
         public class GetPopularScoresRequest : BaseGetScoresRequest

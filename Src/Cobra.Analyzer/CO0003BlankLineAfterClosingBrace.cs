@@ -15,7 +15,7 @@ namespace Cobra.Analyzer
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     internal class CO0003BlankLineAfterClosingBrace : DiagnosticAnalyzer
     {
-        public const string DiagnosticId = "CO0003";
+        private const string DiagnosticId = "CO0003";
 
         private const SyntaxKind InitKeyword = (SyntaxKind)8443;
 
@@ -23,7 +23,7 @@ namespace Cobra.Analyzer
             nameof(Resources.CO0003Title), Resources.ResourceManager, typeof(Resources)
         );
 
-        internal static readonly DiagnosticDescriptor Descriptor = new DiagnosticDescriptor(
+        private static readonly DiagnosticDescriptor _descriptor = new DiagnosticDescriptor(
             DiagnosticId,
             _title,
             _title,
@@ -34,7 +34,7 @@ namespace Cobra.Analyzer
 
         private static readonly Action<SyntaxTreeAnalysisContext> _syntaxTreeAction = HandleSyntaxTree;
 
-        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = ImmutableArray.Create(Descriptor);
+        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = ImmutableArray.Create(_descriptor);
 
         public override void Initialize(AnalysisContext context)
         {
@@ -236,7 +236,7 @@ namespace Cobra.Analyzer
                     if (nextToken.IsKind(SyntaxKind.CommaToken) || nextToken.IsKind(SyntaxKind.CloseParenToken))
                     {
                         // The close brace is the end of an object initializer, anonymous function, lambda expression, etc.
-                        // Comma and close parenthesis never requires a preceeding blank line.
+                        // Comma and close parenthesis never requires a preceding blank line.
                         return;
                     }
 
@@ -248,7 +248,7 @@ namespace Cobra.Analyzer
 
                     if (nextToken.IsKind(SyntaxKind.AddKeyword)
                         || nextToken.IsKind(SyntaxKind.RemoveKeyword)
-                    || nextToken.IsKind(SyntaxKind.GetKeyword)
+                        || nextToken.IsKind(SyntaxKind.GetKeyword)
                         || nextToken.IsKind(SyntaxKind.SetKeyword)
                         || nextToken.IsKind(InitKeyword))
                     {
@@ -257,8 +257,8 @@ namespace Cobra.Analyzer
                     }
 
                     if ((nextToken.IsKind(SyntaxKind.PrivateKeyword)
-                        || nextToken.IsKind(SyntaxKind.ProtectedKeyword)
-                        || nextToken.IsKind(SyntaxKind.InternalKeyword))
+                         || nextToken.IsKind(SyntaxKind.ProtectedKeyword)
+                         || nextToken.IsKind(SyntaxKind.InternalKeyword))
                         && (nextToken.Parent is AccessorDeclarationSyntax))
                     {
                         // the close brace is followed by an accessor with an accessibility restriction.
@@ -280,13 +280,15 @@ namespace Cobra.Analyzer
 
                 var location = Location.Create(_context.Tree, TextSpan.FromBounds(token.Span.End, nextToken.FullSpan.Start));
 
-                _context.ReportDiagnostic(Diagnostic.Create(Descriptor, location));
+                _context.ReportDiagnostic(Diagnostic.Create(_descriptor, location));
             }
 
             private bool IsOnSameLineAsOpeningBrace(SyntaxToken closeBrace)
             {
                 var matchingOpenBrace = _bracesStack.Peek();
-                return matchingOpenBrace.SyntaxTree.GetLineSpan(matchingOpenBrace.Span).EndLinePosition.Line == closeBrace.SyntaxTree.GetLineSpan(closeBrace.Span).StartLinePosition.Line;
+
+                return matchingOpenBrace.SyntaxTree != null && closeBrace.SyntaxTree != null &&
+                       matchingOpenBrace.SyntaxTree.GetLineSpan(matchingOpenBrace.Span).EndLinePosition.Line == closeBrace.SyntaxTree.GetLineSpan(closeBrace.Span).StartLinePosition.Line;
             }
         }
     }

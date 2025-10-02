@@ -13,7 +13,7 @@ namespace Cobra.Server.Hitman.Controllers
     {
         [EdmFunctionImport(
             "GetDeadliestScores",
-            HttpMethods.GET,
+            HttpMethods.Get,
             $"Collection({SchemaNamespace}.ScoreEntry)"
         )]
         public class GetDeadliestScoresRequest : BaseGetScoresRequest

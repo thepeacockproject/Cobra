@@ -1,3 +1,5 @@
+root = true
+
 [*.*]
 dotnet_analyzer_diagnostic.severity = default
 
@@ -186,7 +188,7 @@ dotnet_style_null_propagation = true:suggestion
 dotnet_style_prefer_is_null_check_over_reference_equality_method = true:suggestion
 dotnet_style_prefer_auto_properties = true:silent
 dotnet_style_object_initializer = true:suggestion
-dotnet_style_collection_initializer = true:suggestion
+dotnet_style_collection_initializer = true:silent
 dotnet_style_prefer_simplified_boolean_expressions = true:suggestion
 dotnet_style_prefer_conditional_expression_over_assignment = true:silent
 dotnet_style_prefer_conditional_expression_over_return = true:silent
@@ -211,7 +213,7 @@ dotnet_style_qualification_for_property = false:silent
 dotnet_style_qualification_for_field = false:silent
 dotnet_style_parentheses_in_other_operators = never_if_unnecessary:silent
 dotnet_style_qualification_for_event = false:silent
-dotnet_style_prefer_collection_expression = true:suggestion
+dotnet_style_prefer_collection_expression = when_types_exactly_match:silent
 tab_width = 4
 indent_size = 4
 end_of_line = crlf
@@ -282,6 +284,7 @@ dotnet_diagnostic.IDE0039.severity = suggestion #local method
 dotnet_diagnostic.IDE0042.severity = suggestion #desconstruct tuple
 dotnet_diagnostic.IDE0045.severity = suggestion #simplified if
 dotnet_diagnostic.IDE0046.severity = none #simplified if return
+dotnet_diagnostic.IDE0051.severity = error #unused private field
 dotnet_diagnostic.IDE0057.severity = suggestion #substring range operator
 dotnet_diagnostic.IDE0058.severity = none #discard return value
 dotnet_diagnostic.IDE0063.severity = suggestion #using statement
@@ -294,6 +297,12 @@ dotnet_diagnostic.IDE0220.severity = suggestion #foreach explicit cast
 dotnet_diagnostic.IDE0240.severity = silent #nullable directive
 dotnet_diagnostic.IDE0270.severity = suggestion #simplified null-check
 dotnet_diagnostic.IDE0290.severity = none #primary constructor
+dotnet_diagnostic.IDE0300.severity = none #simplified collection initialization
+dotnet_diagnostic.IDE0301.severity = none #simplified collection initialization
+dotnet_diagnostic.IDE0302.severity = none #simplified collection initialization
+dotnet_diagnostic.IDE0303.severity = none #simplified collection initialization
+dotnet_diagnostic.IDE0304.severity = none #simplified collection initialization
+dotnet_diagnostic.IDE0305.severity = none #simplified collection initialization
 dotnet_diagnostic.IDE1006.severity = error #naming rules
 dotnet_diagnostic.IDE2006.severity = none #blank line arrow expression
 
@@ -306,3 +315,10 @@ dotnet_diagnostic.CA1725.severity = error #base implementation names
 dotnet_diagnostic.CA1849.severity = error #always async
 dotnet_diagnostic.CA1851.severity = warning #multiple enumerations
 dotnet_diagnostic.CA2000.severity = warning #always dispose
+
+# Resharper
+resharper_unused_auto_property_accessor_global_highlighting = hint
+resharper_unused_auto_property_accessor_local_highlighting = hint
+resharper_property_can_be_made_init_only_global_highlighting = hint
+resharper_property_can_be_made_init_only_local_highlighting = hint
+csharp_place_attribute_on_same_line = never

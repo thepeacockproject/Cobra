@@ -12,7 +12,7 @@ namespace Cobra.Server.Hitman.Controllers
      */
     public partial class HitmanController
     {
-        [EdmFunctionImport("GetNewMessageCount", HttpMethods.GET, null)]
+        [EdmFunctionImport("GetNewMessageCount", HttpMethods.Get, null)]
         public class GetNewMessageCountRequest : IEdmFunctionImport
         {
             [NormalizedString]

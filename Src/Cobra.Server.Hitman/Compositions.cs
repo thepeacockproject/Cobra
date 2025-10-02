@@ -1,4 +1,5 @@
-﻿using Cobra.Server.Hitman.Interfaces;
+﻿using Cobra.Server.Edm.Interfaces;
+using Cobra.Server.Hitman.Interfaces;
 using Cobra.Server.Hitman.Services;
 using Cobra.Server.Shared.Models;
 using Microsoft.Extensions.Configuration;
@@ -10,7 +11,7 @@ namespace Cobra.Server.Hitman
     {
         public static void ConfigureServices(IServiceCollection services, IConfiguration configuration, Options options)
         {
-            services.AddSingleton<IHitmanMetadataService, HitmanMetadataService>();
+            services.AddKeyedSingleton<IMetadataService, HitmanMetadataService>(Constants.SchemaNamespace);
 
             switch (options.GameService)
             {

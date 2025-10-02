@@ -1,11 +1,10 @@
 ﻿using Cobra.Server.Edm.Services;
-using Cobra.Server.Sniper.Interfaces;
 using Cobra.Server.Sniper.Models;
 using static Cobra.Server.Sniper.Controllers.SniperController;
 
 namespace Cobra.Server.Sniper.Services
 {
-    public class SniperMetadataService : MetadataService, ISniperMetadataService
+    public class SniperMetadataService : MetadataService
     {
         public SniperMetadataService()
         {

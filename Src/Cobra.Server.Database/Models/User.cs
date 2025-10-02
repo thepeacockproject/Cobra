@@ -7,10 +7,12 @@ namespace Cobra.Server.Database.Models
     [Index(nameof(Country))]
     public class User
     {
+        /// <remarks>This should be treated as a Steam ID.</remarks>
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public ulong Id { get; set; } //NOTE: SteamId
+        public ulong Id { get; set; }
 
         [Required]
+        [MaxLength(255)]
         public string DisplayName { get; set; }
 
         public int Country { get; set; }
@@ -20,5 +22,8 @@ namespace Cobra.Server.Database.Models
         public int Trophies { get; set; }
 
         public ICollection<UserFriend> Friends { get; set; }
+
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
     }
 }

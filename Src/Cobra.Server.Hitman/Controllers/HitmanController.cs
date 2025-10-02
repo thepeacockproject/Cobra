@@ -4,6 +4,7 @@ using Cobra.Server.Edm.Enums;
 using Cobra.Server.Edm.Interfaces;
 using Cobra.Server.Hitman.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Cobra.Server.Hitman.Controllers
 {
@@ -39,7 +40,7 @@ namespace Cobra.Server.Hitman.Controllers
         private readonly IHitmanServer _hitmanServer;
 
         public HitmanController(
-            IHitmanMetadataService hitmanMetadataService,
+            [FromKeyedServices(Constants.SchemaNamespace)] IMetadataService hitmanMetadataService,
             IHitmanServer hitmanServer
         )
         {

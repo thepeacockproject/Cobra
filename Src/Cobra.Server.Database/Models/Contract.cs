@@ -12,12 +12,15 @@ namespace Cobra.Server.Database.Models
         public uint Id { get; set; }
 
         [Required]
+        [MaxLength(255)]
         public string DisplayId { get; set; }
 
         [Required]
+        [MaxLength(255)]
         public string Title { get; set; }
 
         [Required]
+        [MaxLength(1024 * 1024)] //NOTE: 1MB
         public string Description { get; set; }
 
         [Required]

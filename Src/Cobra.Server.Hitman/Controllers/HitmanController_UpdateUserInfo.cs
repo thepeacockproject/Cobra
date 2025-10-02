@@ -12,7 +12,7 @@ namespace Cobra.Server.Hitman.Controllers
      */
     public partial class HitmanController
     {
-        [EdmFunctionImport("UpdateUserInfo", HttpMethods.GET, null)]
+        [EdmFunctionImport("UpdateUserInfo", HttpMethods.Get, null)]
         public class UpdateUserInfoRequest : IEdmFunctionImport
         {
             [NormalizedString]
@@ -26,6 +26,7 @@ namespace Cobra.Server.Hitman.Controllers
             [SFunctionParameter("country", EdmTypes.Int32)]
             public int Country { get; set; }
 
+            //ReSharper disable once CollectionNeverUpdated.Global
             [SplitNormalizedString]
             [SFunctionParameter("friends", EdmTypes.String)]
             public List<string> Friends { get; set; }

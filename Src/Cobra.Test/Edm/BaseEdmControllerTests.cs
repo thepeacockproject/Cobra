@@ -10,7 +10,7 @@ namespace Cobra.Test.Edm
 {
     public class BaseEdmControllerTests
     {
-        public class TestClass
+        private class TestClass
         {
             public int Id { get; set; }
             public string Value { get; set; }
@@ -18,7 +18,7 @@ namespace Cobra.Test.Edm
             public float Percentage { get; set; }
         }
 
-        public class TestEntity : IEdmEntity
+        private class TestEntity : IEdmEntity
         {
             public string StringValue { get; set; }
             public int IntegerValue { get; set; }
@@ -29,7 +29,7 @@ namespace Cobra.Test.Edm
             public List<TestClass> JsonStringValue { get; set; }
         }
 
-        public class TestController : BaseEdmController
+        protected class TestController : BaseEdmController
         {
             public IActionResult TestGenericResponse<T>(T data)
             {

@@ -2,6 +2,7 @@
 using Cobra.Server.Edm.Interfaces;
 using Cobra.Server.Sniper.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Cobra.Server.Sniper.Controllers
 {
@@ -14,7 +15,7 @@ namespace Cobra.Server.Sniper.Controllers
         private readonly ISniperServer _sniperServer;
 
         public SniperController(
-            ISniperMetadataService sniperMetadataService,
+            [FromKeyedServices(Constants.SchemaNamespace)] IMetadataService sniperMetadataService,
             ISniperServer sniperServer
         )
         {

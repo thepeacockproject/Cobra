@@ -22,17 +22,23 @@ namespace Cobra.Server.Mvc
             public string Hash { get; init; }
         }
 
-        private const string REQUEST_HEADER_OSAUTHPROVIDER = "OS-AuthProvider";
-        private const string REQUEST_HEADER_OSAUTHTICKETDATA = "OS-AuthTicketData";
-        private const string REQUEST_HEADER_OSUID = "OS-UID";
-        private const string RESPONSE_HEADER_OSAUTHRESPONSE = "OS-AuthResponse";
-        private const string RESPONSE_HEADER_OSERROR = "OS-Error";
+        private static class RequestHeaders
+        {
+            public const string OSAuthProvider = "OS-AuthProvider";
+            public const string OSAuthTicketData = "OS-AuthTicketData";
+            public const string OSUID = "OS-UID";
+            public const string OSAuthResponse = "OS-AuthResponse";
+            public const string OSError = "OS-Error";
+        }
 
-        private const string OSAUTHPROVIDER_SERVER = "6";
+        private const string OSAuthProviderServer = "6";
 
-        //private const int OSERROR_OK = 0;
-        private const int OSERROR_FAILED = 1;
-        private const int OSERROR_EXPIRED = 2;
+        private static class OSErrors
+        {
+            //public const int OK = 0;
+            public const int Failed = 1;
+            public const int Expired = 2;
+        }
 
         private readonly ISteamService _steamService;
         private readonly int _jwtTokenExpirationInSeconds;
@@ -60,18 +66,18 @@ namespace Cobra.Server.Mvc
                 return;
             }
 
-            var authProvider = context.Request.Headers[REQUEST_HEADER_OSAUTHPROVIDER];
+            var authProvider = context.Request.Headers[RequestHeaders.OSAuthProvider];
 
-            if (!TryDecodeBase64String(context.Request.Headers[REQUEST_HEADER_OSAUTHTICKETDATA], out var authTicketData))
+            if (!TryDecodeBase64String(context.Request.Headers[RequestHeaders.OSAuthTicketData], out var authTicketData))
             {
-                RejectRequest(context, OSERROR_FAILED);
+                RejectRequest(context, OSErrors.Failed);
 
                 return;
             }
 
-            if (!ulong.TryParse(context.Request.Headers[REQUEST_HEADER_OSUID], out var steamId))
+            if (!ulong.TryParse(context.Request.Headers[RequestHeaders.OSUID], out var steamId))
             {
-                RejectRequest(context, OSERROR_FAILED);
+                RejectRequest(context, OSErrors.Failed);
 
                 return;
             }
@@ -80,7 +86,7 @@ namespace Cobra.Server.Mvc
             try
             {
                 //NOTE: Check for our own AuthProvider first
-                if (authProvider == OSAUTHPROVIDER_SERVER)
+                if (authProvider == OSAuthProviderServer)
                 {
                     var jwtToken = DecodeSimpleJwtToken(authTicketData);
 
@@ -97,7 +103,7 @@ namespace Cobra.Server.Mvc
                         return;
                     }
 
-                    RejectRequest(context, OSERROR_EXPIRED);
+                    RejectRequest(context, OSErrors.Expired);
 
                     return;
                 }
@@ -113,7 +119,7 @@ namespace Cobra.Server.Mvc
                         Timestamp = DateTimeOffset.Now.ToUnixTimeSeconds()
                     });
 
-                    context.Response.Headers[RESPONSE_HEADER_OSAUTHRESPONSE] = jwtToken;
+                    context.Response.Headers[RequestHeaders.OSAuthResponse] = jwtToken;
 
                     AuthenticateRequest(context, steamId);
 
@@ -128,7 +134,7 @@ namespace Cobra.Server.Mvc
             }
 
             //NOTE: Always reject a request at this point
-            RejectRequest(context, OSERROR_FAILED);
+            RejectRequest(context, OSErrors.Failed);
         }
 
         private static void AuthenticateRequest(HttpContext context, ulong steamId)
@@ -139,7 +145,7 @@ namespace Cobra.Server.Mvc
         private static void RejectRequest(HttpContext context, int osError)
         {
             context.Response.StatusCode = 403;
-            context.Response.Headers[RESPONSE_HEADER_OSERROR] = osError.ToString();
+            context.Response.Headers[RequestHeaders.OSError] = osError.ToString();
         }
 
         private static bool TryDecodeBase64String(string base64String, out byte[] bytes)

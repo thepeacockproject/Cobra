@@ -12,7 +12,7 @@ namespace Cobra.Server.Hitman.Controllers
      */
     public partial class HitmanController
     {
-        [EdmFunctionImport("UpdateUserProfileLevelProgression", HttpMethods.GET, null)]
+        [EdmFunctionImport("UpdateUserProfileLevelProgression", HttpMethods.Get, null)]
         public class UpdateUserProfileLevelProgressionRequest : IEdmFunctionImport
         {
             [NormalizedString]

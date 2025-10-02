@@ -2,6 +2,6 @@
 {
     public interface ISteamService
     {
-        public Task<bool> AuthenticateUser(byte[] authTicketDataBytes, ulong steamId);
+        Task<bool> AuthenticateUser(byte[] authTicketDataBytes, ulong steamId);
     }
 }

@@ -11,7 +11,7 @@ namespace Cobra.Server.Sniper.Controllers
      */
     public partial class SniperController
     {
-        [EdmFunctionImport("UpdateUserProfile", HttpMethods.GET, null)]
+        [EdmFunctionImport("UpdateUserProfile", HttpMethods.Get, null)]
         public class UpdateUserProfileRequest : IEdmFunctionImport
         {
             [NormalizedString]

@@ -26,7 +26,7 @@ namespace Cobra.Test.Edm
             new BooleanToStringConverter().Write(
                 jsonWriter,
                 input,
-                null
+                null!
             );
 
             jsonWriter.Flush();
@@ -49,7 +49,7 @@ namespace Cobra.Test.Edm
             new IntegerToStringConverter().Write(
                 jsonWriter,
                 input,
-                null
+                null!
             );
 
             jsonWriter.Flush();
@@ -72,7 +72,7 @@ namespace Cobra.Test.Edm
             new FloatToStringConverter().Write(
                 jsonWriter,
                 input,
-                null
+                null!
             );
 
             jsonWriter.Flush();
@@ -123,7 +123,7 @@ namespace Cobra.Test.Edm
             new AnyToJsonStringConverter<object>().Write(
                 jsonWriter,
                 input,
-                null
+                null!
             );
 
             jsonWriter.Flush();

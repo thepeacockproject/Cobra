@@ -14,7 +14,7 @@ namespace Cobra.Server.Sniper.Controllers
     {
         [EdmFunctionImport(
             "GetScores",
-            HttpMethods.GET,
+            HttpMethods.Get,
             $"Collection({SchemaNamespace}.ScoreEntry)"
         )]
         public class GetScoresRequest : IEdmFunctionImport

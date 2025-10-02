@@ -11,13 +11,13 @@ namespace Cobra.Analyzer
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     internal class CO0002BlankLineAtEndOfFile : DiagnosticAnalyzer
     {
-        public const string DiagnosticId = "CO0002";
+        private const string DiagnosticId = "CO0002";
 
         private static readonly LocalizableString _title = new LocalizableResourceString(
             nameof(Resources.CO0002Title), Resources.ResourceManager, typeof(Resources)
         );
 
-        internal static readonly DiagnosticDescriptor Descriptor = new DiagnosticDescriptor(
+        private static readonly DiagnosticDescriptor _descriptor = new DiagnosticDescriptor(
             DiagnosticId,
             _title,
             _title,
@@ -28,7 +28,7 @@ namespace Cobra.Analyzer
 
         private static readonly Action<SyntaxTreeAnalysisContext> _syntaxTreeAction = HandleSyntaxTree;
 
-        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = ImmutableArray.Create(Descriptor);
+        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = ImmutableArray.Create(_descriptor);
 
         public override void Initialize(AnalysisContext context)
         {
@@ -60,7 +60,7 @@ namespace Cobra.Analyzer
                 return;
             }
 
-            context.ReportDiagnostic(Diagnostic.Create(Descriptor, endOfFileToken.GetLocation()));
+            context.ReportDiagnostic(Diagnostic.Create(_descriptor, endOfFileToken.GetLocation()));
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Cobra.Server.Shared.Models;
+﻿using Cobra.Server.Edm.Interfaces;
+using Cobra.Server.Shared.Models;
 using Cobra.Server.Sniper.Interfaces;
 using Cobra.Server.Sniper.Services;
 using Microsoft.Extensions.Configuration;
@@ -10,7 +11,7 @@ namespace Cobra.Server.Sniper
     {
         public static void ConfigureServices(IServiceCollection services, IConfiguration configuration, Options options)
         {
-            services.AddSingleton<ISniperMetadataService, SniperMetadataService>();
+            services.AddKeyedSingleton<IMetadataService, SniperMetadataService>(Constants.SchemaNamespace);
             services.AddSingleton<ISniperServer, MockedSniperServer>();
         }
 

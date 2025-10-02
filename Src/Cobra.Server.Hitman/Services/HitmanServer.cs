@@ -31,6 +31,7 @@ namespace Cobra.Server.Hitman.Services
 
         public int ExecuteWalletTransaction(HitmanController.ExecuteWalletTransactionRequest request)
         {
+            //TODO: Concurrency check
             return 0;
         }
 
@@ -90,6 +91,7 @@ namespace Cobra.Server.Hitman.Services
 
         public int PutScore(HitmanController.PutScoreRequest request)
         {
+            //TODO: Concurrency check for Wallet
             return 0;
         }
 

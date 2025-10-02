@@ -13,7 +13,7 @@ namespace Cobra.Server.Sniper.Controllers
      */
     public partial class SniperController
     {
-        [EdmFunctionImport("SendTemplatedMessage", HttpMethods.GET, null)]
+        [EdmFunctionImport("SendTemplatedMessage", HttpMethods.Get, null)]
         public class SendTemplatedMessageRequest : IEdmFunctionImport
         {
             [NormalizedString]

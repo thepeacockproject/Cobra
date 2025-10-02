@@ -5,13 +5,15 @@ namespace Cobra.Server.Edm.Mvc
 {
     public class SplitNormalizedStringModelBinder : IModelBinder
     {
+        private static readonly char[] _separator = new[] { ',', ';' };
+
         public Task BindModelAsync(ModelBindingContext bindingContext)
         {
             //NOTE: Split by comma or semicolon
             var value = bindingContext
                 .NormalizeString()?
                 .Split(
-                    new[] { ',', ';' },
+                    _separator,
                     StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries
                 )
                 .ToList();

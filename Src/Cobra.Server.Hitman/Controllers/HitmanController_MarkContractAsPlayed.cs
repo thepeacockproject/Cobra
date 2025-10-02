@@ -11,7 +11,7 @@ namespace Cobra.Server.Hitman.Controllers
      */
     public partial class HitmanController
     {
-        [EdmFunctionImport("MarkContractAsPlayed", HttpMethods.GET, null)]
+        [EdmFunctionImport("MarkContractAsPlayed", HttpMethods.Get, null)]
         public class MarkContractAsPlayedRequest : IEdmFunctionImport
         {
             [NormalizedString]

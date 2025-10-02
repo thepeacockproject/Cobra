@@ -11,7 +11,7 @@ namespace Cobra.Analyzer
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     internal class CO0001SingleLineCommentMustNotBeginWithSpace : DiagnosticAnalyzer
     {
-        public const string DiagnosticId = "CO0001";
+        private const string DiagnosticId = "CO0001";
 
         private static readonly LocalizableString _title = new LocalizableResourceString(
             nameof(Resources.CO0001Title), Resources.ResourceManager, typeof(Resources)

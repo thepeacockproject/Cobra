@@ -13,7 +13,7 @@ namespace Cobra.Server.Hitman.Controllers
      */
     public partial class HitmanController
     {
-        [EdmFunctionImport("SendTemplatedMessage", HttpMethods.GET, null)]
+        [EdmFunctionImport("SendTemplatedMessage", HttpMethods.Get, null)]
         public class SendTemplatedMessageRequest : IEdmFunctionImport
         {
             [NormalizedString]

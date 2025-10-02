@@ -11,7 +11,7 @@ namespace Cobra.Server.Hitman.Controllers
      */
     public partial class HitmanController
     {
-        [EdmFunctionImport("UpdateDLCInfo", HttpMethods.GET, null)]
+        [EdmFunctionImport("UpdateDLCInfo", HttpMethods.Get, null)]
         public class UpdateDLCInfoRequest : IEdmFunctionImport
         {
             [SplitNormalizedString]

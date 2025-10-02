@@ -18,7 +18,7 @@ namespace Cobra.Server.Sniper.Controllers
     {
         [EdmFunctionImport(
             "GetMessages",
-            HttpMethods.GET,
+            HttpMethods.Get,
             $"Collection({SchemaNamespace}.Message)"
         )]
         public class GetMessagesRequest : IEdmFunctionImport

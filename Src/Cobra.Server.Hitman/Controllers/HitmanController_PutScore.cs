@@ -12,7 +12,7 @@ namespace Cobra.Server.Hitman.Controllers
      */
     public partial class HitmanController
     {
-        [EdmFunctionImport("PutScore", HttpMethods.GET, null)]
+        [EdmFunctionImport("PutScore", HttpMethods.Get, null)]
         public class PutScoreRequest : IEdmFunctionImport
         {
             [SFunctionParameter("leaderboardtype", EdmTypes.Int32)]

@@ -14,7 +14,7 @@ namespace Cobra.Server.Hitman.Controllers
     {
         [EdmFunctionImport(
             "GetUserWallet",
-            HttpMethods.GET,
+            HttpMethods.Get,
             null
         )]
         public class GetUserWalletRequest : IEdmFunctionImport

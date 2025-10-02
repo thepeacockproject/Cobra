@@ -1,5 +1,4 @@
 ﻿using System.Runtime.InteropServices;
-using System.Text;
 using Cobra.Server.Interfaces;
 
 namespace Cobra.Server.Services
@@ -7,19 +6,19 @@ namespace Cobra.Server.Services
     public class SteamGameServerService : ISteamService
     {
         private const string LibraryName = "steam_api64";
-        private const CallingConvention CC = CallingConvention.Cdecl;
+        private const CallingConvention LibraryCallingConvention = CallingConvention.Cdecl;
 
         [DllImport(LibraryName, EntryPoint = "SteamInternal_GameServer_Init", CallingConvention = CallingConvention.Cdecl)]
         [return: MarshalAs(UnmanagedType.I1)]
         private static extern bool SteamInternal_GameServer_Init(uint unIP, ushort usPort, ushort usGamePort, ushort usQueryPort, int eServerMode, IntPtr pchVersionString);
 
-        [DllImport(LibraryName, EntryPoint = "SteamAPI_SteamGameServer_v015", CallingConvention = CC)]
+        [DllImport(LibraryName, EntryPoint = "SteamAPI_SteamGameServer_v015", CallingConvention = LibraryCallingConvention)]
         private static extern IntPtr SteamAPI_SteamGameServer_v015();
 
-        [DllImport(LibraryName, EntryPoint = "SteamAPI_ISteamGameServer_BeginAuthSession", CallingConvention = CC)]
+        [DllImport(LibraryName, EntryPoint = "SteamAPI_ISteamGameServer_BeginAuthSession", CallingConvention = LibraryCallingConvention)]
         private static extern int SteamAPI_ISteamGameServer_BeginAuthSession(IntPtr self, IntPtr pAuthTicket, int cbAuthTicket, ulong steamId);
 
-        [DllImport(LibraryName, EntryPoint = "SteamAPI_ISteamGameServer_EndAuthSession", CallingConvention = CC)]
+        [DllImport(LibraryName, EntryPoint = "SteamAPI_ISteamGameServer_EndAuthSession", CallingConvention = LibraryCallingConvention)]
         private static extern void SteamAPI_ISteamGameServer_EndAuthSession(IntPtr self, ulong steamId);
 
         private readonly IntPtr _instance;
@@ -31,7 +30,7 @@ namespace Cobra.Server.Services
             Environment.SetEnvironmentVariable("SteamAppId", appId);
             Environment.SetEnvironmentVariable("SteamGameId", appId);
 
-            var versionBytes = Encoding.UTF8.GetBytes("1.0.0.0");
+            var versionBytes = "1.0.0.0"u8.ToArray();
             var hVersionBytes = GCHandle.Alloc(versionBytes, GCHandleType.Pinned);
             var pVersionBytes = hVersionBytes.AddrOfPinnedObject();
 

@@ -17,10 +17,10 @@
             WebApi
         }
 
-        public bool FixAddMetricsContentType { get; set; } = false;
-        public bool EnableRequestLogging { get; set; } = false;
-        public bool EnableRequestBodyLogging { get; set; } = false;
-        public bool EnableResponseBodyLogging { get; set; } = false;
+        public bool FixAddMetricsContentType { get; set; }
+        public bool EnableRequestLogging { get; set; }
+        public bool EnableRequestBodyLogging { get; set; }
+        public bool EnableResponseBodyLogging { get; set; }
 
         public int JwtTokenExpirationInSeconds { get; set; } = 60 * 60 * 8; //NOTE: 8 hours
         public string JwtSignKey { get; set; } = Guid.NewGuid().ToString();

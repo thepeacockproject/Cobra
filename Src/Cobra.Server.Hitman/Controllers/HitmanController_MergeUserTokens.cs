@@ -15,7 +15,7 @@ namespace Cobra.Server.Hitman.Controllers
     {
         [EdmFunctionImport(
             "MergeUserTokens",
-            HttpMethods.GET,
+            HttpMethods.Get,
             $"Collection({SchemaNamespace}.UserTokenData)"
         )]
         public class MergeUserTokensRequest : IEdmFunctionImport

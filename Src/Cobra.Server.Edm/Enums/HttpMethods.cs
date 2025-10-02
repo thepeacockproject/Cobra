@@ -2,7 +2,7 @@
 {
     public static class HttpMethods
     {
-        public const string GET = "GET";
-        public const string POST = "POST";
+        public const string Get = "GET";
+        public const string Post = "POST";
     }
 }

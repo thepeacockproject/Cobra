@@ -14,7 +14,7 @@ namespace Cobra.Server.Hitman.Controllers
     {
         [EdmFunctionImport(
             "GetScoreComparison",
-            HttpMethods.GET,
+            HttpMethods.Get,
             $"{SchemaNamespace}.ScoreComparison")
         ]
         public class GetScoreComparisonRequest : IEdmFunctionImport

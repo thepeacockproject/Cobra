@@ -15,7 +15,9 @@ namespace Cobra.Server.Database
                     .UseSqlite(
                         configuration.GetConnectionString("CobraDatabase"),
                         x => x.MigrationsAssembly("Cobra.Server.Database")
-                    );
+                    )
+                    .EnableSensitiveDataLogging()
+                    .LogTo(Console.WriteLine);
             });
         }
 

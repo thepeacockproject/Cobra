@@ -11,14 +11,14 @@ namespace Cobra.Test.Edm
 {
     public class ModelBinderTests
     {
-        public class TestModel
+        private class TestModel
         {
             [JsonPropertyName("_id")] public int Id { get; set; }
         }
 
         //ReSharper disable UnassignedGetOnlyAutoProperty
         [ExcludeFromCodeCoverage]
-        public class TestModelMetadata : ModelMetadata
+        private class TestModelMetadata : ModelMetadata
         {
             public override IReadOnlyDictionary<object, object> AdditionalValues { get; }
             public override ModelPropertyCollection Properties { get; }

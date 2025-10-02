@@ -80,7 +80,7 @@ namespace Cobra.Server.Database.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Contracts");
+                    b.ToTable("Contracts", (string)null);
                 });
 
             modelBuilder.Entity("Cobra.Server.Database.Models.ContractTarget", b =>
@@ -110,7 +110,7 @@ namespace Cobra.Server.Database.Migrations
                     b.HasIndex("Name", "WeaponToken", "OutfitToken", "AmmoType", "SpecialSituation")
                         .IsUnique();
 
-                    b.ToTable("ContractTargets");
+                    b.ToTable("ContractTargets", (string)null);
                 });
 
             modelBuilder.Entity("Cobra.Server.Database.Models.ScoreSniper", b =>
@@ -123,7 +123,7 @@ namespace Cobra.Server.Database.Migrations
 
                     b.HasKey("UserId");
 
-                    b.ToTable("ScoresSniper");
+                    b.ToTable("ScoresSniper", (string)null);
                 });
 
             modelBuilder.Entity("Cobra.Server.Database.Models.ScoreStory", b =>
@@ -141,7 +141,7 @@ namespace Cobra.Server.Database.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("ScoresStory");
+                    b.ToTable("ScoresStory", (string)null);
                 });
 
             modelBuilder.Entity("Cobra.Server.Database.Models.ScoreTutorial", b =>
@@ -154,7 +154,7 @@ namespace Cobra.Server.Database.Migrations
 
                     b.HasKey("UserId");
 
-                    b.ToTable("ScoresTutorial");
+                    b.ToTable("ScoresTutorial", (string)null);
                 });
 
             modelBuilder.Entity("Cobra.Server.Database.Models.User", b =>
@@ -185,7 +185,7 @@ namespace Cobra.Server.Database.Migrations
 
                     b.HasIndex("Country");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("Cobra.Server.Database.Models.UserContract", b =>
@@ -219,7 +219,7 @@ namespace Cobra.Server.Database.Migrations
 
                     b.HasIndex("UserId", "Queued");
 
-                    b.ToTable("UserContracts");
+                    b.ToTable("UserContracts", (string)null);
                 });
 
             modelBuilder.Entity("Cobra.Server.Database.Models.UserFriend", b =>
@@ -232,7 +232,7 @@ namespace Cobra.Server.Database.Migrations
 
                     b.HasKey("UserId", "SteamId");
 
-                    b.ToTable("UserFriends");
+                    b.ToTable("UserFriends", (string)null);
                 });
 
             modelBuilder.Entity("Cobra.Server.Database.Models.Contract", b =>

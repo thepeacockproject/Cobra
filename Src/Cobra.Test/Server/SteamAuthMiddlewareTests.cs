@@ -99,7 +99,7 @@ namespace Cobra.Test.Server
         {
             await TestForRejectedUnknownAuthProvider(
                 userId,
-                Convert.ToBase64String(Encoding.UTF8.GetBytes("47"))
+                Convert.ToBase64String("47"u8.ToArray())
             );
         }
 

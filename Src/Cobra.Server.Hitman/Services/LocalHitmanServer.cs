@@ -131,7 +131,7 @@ namespace Cobra.Server.Hitman.Services
         {
             return Task.FromResult(new GetUserOverviewData
             {
-                WalletAmount = _userProfile.TotalEarnings,
+                WalletAmount = _userProfile.WalletAmount,
                 ContractPlays = _userProfile.PlayedContracts.Sum(x => x.Value.Plays),
                 ContractsCreated = _userProfile.ContractsCreated
             });

@@ -2,6 +2,6 @@
 {
     public interface IUserService
     {
-        public ulong GetCurrentUserId();
+        ulong GetCurrentUserId();
     }
 }

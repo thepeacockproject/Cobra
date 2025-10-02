@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Cobra.Server.Controllers
 {
+    //TODO: Move this to a local implementation
     [Route("contracts")]
     public class ContractsController : Controller
     {

@@ -12,7 +12,7 @@ namespace Cobra.Server.Sniper.Controllers
      */
     public partial class SniperController
     {
-        [EdmFunctionImport("GetNewMessageCount", HttpMethods.GET, null)]
+        [EdmFunctionImport("GetNewMessageCount", HttpMethods.Get, null)]
         public class GetNewMessageCountRequest : IEdmFunctionImport
         {
             [NormalizedString]

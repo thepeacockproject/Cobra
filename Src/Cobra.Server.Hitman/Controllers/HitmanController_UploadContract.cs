@@ -13,7 +13,7 @@ namespace Cobra.Server.Hitman.Controllers
      */
     public partial class HitmanController
     {
-        [EdmFunctionImport("UploadContract", HttpMethods.GET, null)]
+        [EdmFunctionImport("UploadContract", HttpMethods.Get, null)]
         public class UploadContractRequest : IEdmFunctionImport
         {
             [SFunctionParameter("levelIndex", EdmTypes.Int32)]

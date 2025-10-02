@@ -14,7 +14,7 @@ namespace Cobra.Server.Hitman.Controllers
     {
         [EdmFunctionImport(
             "GetFeaturedContract",
-            HttpMethods.GET,
+            HttpMethods.Get,
             $"{SchemaNamespace}.Contract"
         )]
         public class GetFeaturedContractRequest : IEdmFunctionImport

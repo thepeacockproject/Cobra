@@ -11,7 +11,7 @@ namespace Cobra.Server.Hitman.Controllers
      */
     public partial class HitmanController
     {
-        [EdmFunctionImport("UpdateContractLikeDislikes", HttpMethods.GET, null)]
+        [EdmFunctionImport("UpdateContractLikeDislikes", HttpMethods.Get, null)]
         public class UpdateContractLikeDislikesRequest : IEdmFunctionImport
         {
             [NormalizedString]

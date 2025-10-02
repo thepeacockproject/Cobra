@@ -12,7 +12,7 @@ namespace Cobra.Server.Hitman.Controllers
      */
     public partial class HitmanController
     {
-        [EdmFunctionImport("SearchForContracts2", HttpMethods.GET, $"Collection({SchemaNamespace}.Contract)")]
+        [EdmFunctionImport("SearchForContracts2", HttpMethods.Get, $"Collection({SchemaNamespace}.Contract)")]
         public class SearchForContracts2Request : IEdmFunctionImport
         {
             [SFunctionParameter("view", EdmTypes.Int32)]

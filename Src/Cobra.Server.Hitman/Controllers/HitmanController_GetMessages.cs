@@ -18,7 +18,7 @@ namespace Cobra.Server.Hitman.Controllers
     {
         [EdmFunctionImport(
             "GetMessages",
-            HttpMethods.GET,
+            HttpMethods.Get,
             $"Collection({SchemaNamespace}.Message)"
         )]
         public class GetMessagesRequest : IEdmFunctionImport

@@ -6,7 +6,7 @@ namespace Cobra.Server.Models
     {
         public override bool IsAuthenticated => true;
 
-        public ulong SteamId { get; init; }
+        public ulong SteamId { get; }
 
         public CustomIdentity(ulong steamId)
         {

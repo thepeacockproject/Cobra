@@ -11,7 +11,7 @@ namespace Cobra.Server.Hitman.Controllers
      */
     public partial class HitmanController
     {
-        [EdmFunctionImport("QueueRemoveContract", HttpMethods.GET, null)]
+        [EdmFunctionImport("QueueRemoveContract", HttpMethods.Get, null)]
         public class QueueRemoveContractRequest : IEdmFunctionImport
         {
             [NormalizedString]

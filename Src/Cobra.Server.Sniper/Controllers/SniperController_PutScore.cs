@@ -11,7 +11,7 @@ namespace Cobra.Server.Sniper.Controllers
      */
     public partial class SniperController
     {
-        [EdmFunctionImport("PutScore", HttpMethods.GET, null)]
+        [EdmFunctionImport("PutScore", HttpMethods.Get, null)]
         public class PutScoreRequest : IEdmFunctionImport
         {
             [SFunctionParameter("leaderboardid", EdmTypes.Int32)]

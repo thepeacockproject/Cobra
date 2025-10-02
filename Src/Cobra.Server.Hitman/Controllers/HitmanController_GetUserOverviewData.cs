@@ -14,7 +14,7 @@ namespace Cobra.Server.Hitman.Controllers
     {
         [EdmFunctionImport(
             "GetUserOverviewData",
-            HttpMethods.GET,
+            HttpMethods.Get,
             $"{SchemaNamespace}.GetUserOverviewData"
         )]
         public class GetUserOverviewDataRequest : IEdmFunctionImport

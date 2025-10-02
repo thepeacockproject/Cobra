@@ -5,11 +5,13 @@ using Cobra.Server.Edm.Models.Base;
 using Cobra.Server.Edm.Services;
 using System.Diagnostics.CodeAnalysis;
 
+#pragma warning disable S2094
+
 namespace Cobra.Test.Edm
 {
     public class MetadataServiceTests
     {
-        public class TestMetadataService : MetadataService
+        private class TestMetadataService : MetadataService
         {
             private readonly List<Type> _edmEntityTypes;
             private readonly List<Type> _edmFunctionImports;
@@ -32,48 +34,50 @@ namespace Cobra.Test.Edm
 
         [ExcludeFromCodeCoverage]
         [EdmEntity("EntityTest")]
-        public class TestEntityValid : IEdmEntity
+        private class TestEntityValid : IEdmEntity
         {
+            //ReSharper disable once UnusedMember.Local
             [EdmProperty("_stringValue", EdmTypes.String, true)]
             public string StringValue { get; set; }
         }
 
-        public class TestEntityInvalid1
+        private class TestEntityInvalid1
         {
             //Do nothing
         }
 
         [EdmEntity("EntityTest")]
-        public class TestEntityInvalid2
+        private class TestEntityInvalid2
         {
             //Do nothing
         }
 
-        public class TestEntityInvalid3 : IEdmEntity
+        private class TestEntityInvalid3 : IEdmEntity
         {
             //Do nothing
         }
 
         [ExcludeFromCodeCoverage]
-        [EdmFunctionImport("FunctionImportTest", HttpMethods.GET, "Test.EntityTest")]
-        public class TestFunctionImportValid : IEdmFunctionImport
+        [EdmFunctionImport("FunctionImportTest", HttpMethods.Get, "Test.EntityTest")]
+        private class TestFunctionImportValid : IEdmFunctionImport
         {
+            //ReSharper disable once UnusedMember.Local
             [SFunctionParameter("_stringValue", EdmTypes.String)]
             public string StringValue { get; set; }
         }
 
-        public class TestFunctionImportInvalid1
+        private class TestFunctionImportInvalid1
         {
             //Do nothing
         }
 
-        [EdmFunctionImport("FunctionImportTest", HttpMethods.GET, "Test.EntityTest")]
-        public class TestFunctionImportInvalid2
+        [EdmFunctionImport("FunctionImportTest", HttpMethods.Get, "Test.EntityTest")]
+        private class TestFunctionImportInvalid2
         {
             //Do nothing
         }
 
-        public class TestFunctionImportInvalid3 : IEdmFunctionImport
+        private class TestFunctionImportInvalid3 : IEdmFunctionImport
         {
             //Do nothing
         }
@@ -163,12 +167,12 @@ namespace Cobra.Test.Edm
             var metadata = metadataService.GetMetadata();
             var schema = metadata.Schemas.Single();
             var entityContainer = schema.EntityContainers.Single();
-            var functionImport = entityContainer.FunctionImports.Last();
+            var functionImport = entityContainer.FunctionImports[^1];
 
             var functionImportExpected = new EdmFunctionImport
             {
                 Name = "FunctionImportTest",
-                HttpMethod = HttpMethods.GET,
+                HttpMethod = HttpMethods.Get,
                 ReturnType = "Test.EntityTest",
                 Parameters = new List<SFunctionParameter>
                 {

@@ -1,11 +1,10 @@
 ﻿using Cobra.Server.Edm.Services;
-using Cobra.Server.Hitman.Interfaces;
 using Cobra.Server.Hitman.Models;
 using static Cobra.Server.Hitman.Controllers.HitmanController;
 
 namespace Cobra.Server.Hitman.Services
 {
-    public class HitmanMetadataService : MetadataService, IHitmanMetadataService
+    public class HitmanMetadataService : MetadataService
     {
         public HitmanMetadataService()
         {

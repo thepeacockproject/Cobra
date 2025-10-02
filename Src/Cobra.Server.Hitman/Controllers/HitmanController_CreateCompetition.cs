@@ -11,7 +11,7 @@ namespace Cobra.Server.Hitman.Controllers
      */
     public partial class HitmanController
     {
-        [EdmFunctionImport("CreateCompetition", HttpMethods.GET, null)]
+        [EdmFunctionImport("CreateCompetition", HttpMethods.Get, null)]
         public class CreateCompetitionRequest : IEdmFunctionImport
         {
             [NormalizedString]

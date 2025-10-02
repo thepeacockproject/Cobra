@@ -12,7 +12,7 @@ namespace Cobra.Server.Hitman.Controllers
      */
     public partial class HitmanController
     {
-        [EdmFunctionImport("ExecuteWalletTransaction", HttpMethods.GET, null)]
+        [EdmFunctionImport("ExecuteWalletTransaction", HttpMethods.Get, null)]
         public class ExecuteWalletTransactionRequest : IEdmFunctionImport
         {
             [SFunctionParameter("amount", EdmTypes.Int32)]
